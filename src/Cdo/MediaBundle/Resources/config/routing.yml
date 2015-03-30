@@ -1,0 +1,4 @@
+cdo_media_admin_image:
+    resource: "@CdoMediaBundle/Controller/Admin/ImageController.php"
+    type:     annotation
+

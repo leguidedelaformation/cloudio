@@ -1,0 +1,12 @@
+{% extends "CdoSiteBundle:Admin/Styles:layout.html.twig" %}
+
+{% block innercontent %}
+    <div class="text-center">
+        <p><a href="{{ path('cdo_site_admin_styles_body', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg">Général</a></p>
+        <p><a href="{{ path('cdo_site_admin_styles_header', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg">En-tête</a></p>
+        <p><a href="{{ path('cdo_site_admin_styles_navbar', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg">Menu principal</a></p>
+        <p><a href="{{ path('cdo_site_admin_styles_content', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg">Contenu</a></p>
+        <p><a href="{{ path('cdo_site_admin_styles_footer', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg">Pied de page</a></p>
+        <p><a href="{{ path('cdo_site_admin_styles_sheet', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg">Feuille de style</a></p>
+    </div><!-- /.text-center -->
+{% endblock innercontent %}

@@ -1,0 +1,10 @@
+{% extends "CdoSiteBundle:Admin/Form:save.html.twig" %}
+
+{% block formfields %}
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+            {{ form_widget(form.content) }}
+            {{ form_errors(form.content) }}
+        </div><!-- /.col-xs-10 -->
+    </div><!-- /.row -->
+{% endblock formfields %}

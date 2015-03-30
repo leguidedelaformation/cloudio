@@ -1,0 +1,29 @@
+{% extends "CdoMediaBundle:Admin/Image:layout.html.twig" %}
+
+{% block addbutton %}
+    <a href="{{ path('cdo_media_admin_image_upload', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg" aria-label="Ajouter">Ajouter</a>
+{% endblock addbutton %}
+
+{% block image_content %}
+    <div class="row" id="image-index">
+        {% for image in image_list %}
+            <div class="col-xs-3 text-center">
+                <div class="frame">
+                    <div class="title">{{ image.alt }}{% if image.navbarlogo %} (Logo){% endif %}</div>
+                    <img src="{{ asset(image.webPath) }}" alt="{{ image.alt }}" />
+                </div><!-- /.frame -->
+                <div class="btn-group">
+                    <a href="{{ asset(image.webPath) }}" target="_blank" class="btn btn-default" aria-label="Afficher" rel="tooltip" data-original-title="Afficher">
+                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('cdo_media_admin_image_update', {'id': image.id, 'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default" aria-label="Editer" rel="tooltip" data-original-title="Editer">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('cdo_media_admin_image_remove', {'id': image.id, 'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default" aria-label="Supprimer" rel="tooltip" data-original-title="Supprimer">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </a>
+                </div><!-- /.btn-group -->
+            </div><!-- /.col-xs-3 -->
+        {% endfor %}
+    </div><!-- /.row -->
+{% endblock image_content %}

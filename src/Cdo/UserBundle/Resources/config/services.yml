@@ -1,0 +1,13 @@
+services:
+    cdo_user.profile.form.type:
+        class: Cdo\UserBundle\Form\Type\ProfileFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: cdo_user_profile }
+    cdo_user.security.authentication_handler:
+        class: Cdo\UserBundle\Handler\AuthenticationHandler
+        public: false
+        arguments:
+            - @router
+            - @session
+            - @security.context

@@ -1,0 +1,9 @@
+{% extends "CdoSiteBundle:Admin/Params:layout.html.twig" %}
+
+{% block innercontent %}
+    <div class="text-center">
+        <p><a href="{{ path('cdo_site_admin_params_site', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg">Général</a></p>
+        <p><a href="{{ path('cdo_site_admin_params_social', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg">Réseaux sociaux</a></p>
+        <p><a href="{{ path('cdo_site_admin_params_page', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg">Pages</a></p>
+    </div><!-- /.text-center -->
+{% endblock innercontent %}

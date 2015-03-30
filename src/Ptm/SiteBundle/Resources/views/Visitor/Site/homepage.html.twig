@@ -1,0 +1,14 @@
+{% extends "PtmSiteBundle::layout.html.twig" %}
+
+{% block content %}
+    <h1>Bienvenue sur Training Dev</h1>
+    <p>Créer mon site</p>
+    <p><a href="{{ path('fos_user_security_login') }}" rel="nofollow">Me connecter</a></p>
+    <h2>Sites internet</h2>
+    {% for account in account_list %}
+        <p><a href="{{ path('cdo_blog_visitor_page_homepage', {'subdomain': account.subdomain}) }}">{{ account.title }}</a></p>
+    {% endfor %}
+    {% if is_granted('ROLE_ADMIN') %}
+        {% include "PtmSiteBundle:Admin/Fixtures:widget.html.twig" %}
+    {% endif %}
+{% endblock content %}

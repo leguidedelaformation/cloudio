@@ -1,0 +1,22 @@
+{% extends "CdoSiteBundle:Admin/Form:update.html.twig" %}
+
+{% block formfields %}
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.site_title) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.site_title) }}
+            {{ form_errors(form.site_title) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.site_slogan) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.site_slogan) }}
+            {{ form_errors(form.site_slogan) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+{% endblock formfields %}

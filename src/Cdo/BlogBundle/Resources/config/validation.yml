@@ -1,0 +1,4 @@
+Cdo\BlogBundle\Entity\Page:
+    properties:
+        title:
+            - NotBlank: { groups: [title] }

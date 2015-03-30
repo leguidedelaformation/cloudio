@@ -1,0 +1,88 @@
+/*~~~ Site ~~~*/
+
+.container-fluid {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/*~~~ Forms ~~~*/
+.form-control {
+    margin-bottom: 1em;
+}
+.control-label {
+    font-weight: normal;
+}
+
+/*~~~ Layout ~~~*/
+#navbar > .row,
+#content > .row {
+    margin-right: 0;
+}
+#navbar,
+#sidemenu {
+    background: #000;
+    padding-left: 10px;
+}
+#navbar {
+    font-size: 1.2em;
+    line-height: 1.6em;
+    color: #fff;
+    height: 2em;
+}
+#navbar .dropdown:hover .dropdown-menu {
+  display: block;
+}
+#navbar a {
+    color: #fff;
+}
+#usermenu {
+    background: #000;
+}
+#content {
+	width: 100%;
+}
+#sidemenu a {
+	color: #fff;
+}
+#sidemenu .menu-item-0 {
+    background: #000;
+}
+#sidemenu .menu-item-1 {
+    background: #4D4D4D;
+    text-indent: 2em;
+    margin-left: -1em;
+}
+#innercontent {
+	margin-top: 1em;
+}
+#addbutton {
+	float: right;
+	margin-top: 1.4em;
+}
+
+/*~~~ Image ~~~*/
+#image img {
+    max-width: 600px;
+    max-height: 400px;
+    margin: 40px;
+}
+#image .frame {
+    border: 1px solid grey;
+    border-radius: 6px;
+    margin: 10px;
+    padding: 10px;
+    min-height: 200px;
+    text-align: center;
+}
+#image .frame img {
+    max-width: 100%;
+    max-height: 140px;
+    margin: 0;
+}
+#image .frame .title {
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+#image .btn-group {
+    margin-bottom: 1em;
+}

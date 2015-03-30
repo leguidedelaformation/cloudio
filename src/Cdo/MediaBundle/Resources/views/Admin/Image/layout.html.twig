@@ -1,0 +1,16 @@
+{% extends "CdoSiteBundle:Admin:layout.html.twig" %}
+
+{% block title %}
+    Images {{ parent() }}
+{% endblock title %}
+
+{% block heading %}
+    <h1>Images</h1>
+{% endblock heading %}
+
+{% block innercontent %}
+    <div id="image">
+        {% block image_content %}
+        {% endblock image_content %}
+    </div><!-- /#image -->
+{% endblock innercontent %}

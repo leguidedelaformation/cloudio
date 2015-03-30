@@ -1,0 +1,13 @@
+Cdo\MediaBundle\Entity\Image:
+    properties:
+        file:
+            - File:
+                maxSize: 6000k
+                groups: [file]
+            - Image:
+                maxWidth: 2400
+                maxHeight: 1600
+                groups: [file]
+            - NotBlank: { groups: [file] }
+        alt:
+            - NotBlank: { groups: [alt] }

@@ -1,0 +1,16 @@
+{% extends "CdoSiteBundle:Admin/Form:update.html.twig" %}
+
+{% block formfields %}
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.wrap_paddingtop) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.wrap_paddingtop) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.wrap_paddingtop) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+{% endblock formfields %}

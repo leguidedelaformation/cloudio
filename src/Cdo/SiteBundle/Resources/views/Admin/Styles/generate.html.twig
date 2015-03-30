@@ -1,0 +1,234 @@
+body {
+    {% if styles_array['body'].width %}
+        width: {{ styles_array['body'].width }}px;
+    {% endif %}
+    {% if styles_array['body'].background %}
+        background: {{ styles_array['body'].background }};
+    {% endif %}
+    {% if styles_array['body'].backgroundimage %}
+        background-image: url(../../../{{ styles_array['body'].backgroundimage }});
+    {% endif %}
+}
+#wrap {
+    {% if styles_array['wrap'].width %}
+        width: {{ styles_array['wrap'].width }}px;
+    {% endif %}
+    {% if styles_array['wrap'].background %}
+        background: {{ styles_array['wrap'].background }};
+    {% endif %}
+    {% if styles_array['wrap'].color %}
+        color: {{ styles_array['wrap'].color }};
+    {% endif %}
+    {% if styles_array['wrap'].fontsize %}
+        font-size: {{ styles_array['wrap'].fontsize }}px;
+    {% endif %}
+    {% if styles_array['wrap'].margintop %}
+        margin-top: {{ styles_array['wrap'].margintop }}px;
+    {% endif %}
+    {% if styles_array['wrap'].paddingtop %}
+        padding-top: {{ styles_array['wrap'].paddingtop }}px;
+    {% endif %}
+}
+#wrap .container-fluid {
+    {% if styles_array['wrap'].containerfluid.paddingtop %}
+        padding-top: {{ styles_array['wrap'].containerfluid.paddingtop }}px;
+    {% endif %}
+    {% if styles_array['wrap'].containerfluid.paddingright %}
+        padding-right: {{ styles_array['wrap'].containerfluid.paddingright }}px;
+    {% endif %}
+    {% if styles_array['wrap'].containerfluid.paddingbottom %}
+        padding-bottom: {{ styles_array['wrap'].containerfluid.paddingbottom }}px;
+    {% endif %}
+    {% if styles_array['wrap'].containerfluid.paddingleft %}
+        padding-left: {{ styles_array['wrap'].containerfluid.paddingleft }}px;
+    {% endif %}
+}
+#navbar {
+    {% if styles_array['navbar'].background %}
+        background: {{ styles_array['navbar'].background }};
+    {% endif %}
+    {% if styles_array['navbar'].backgroundimage %}
+        background-image: url(../../../{{ styles_array['navbar'].backgroundimage }});
+    {% endif %}
+    {% if styles_array['navbar'].borderradius %}
+        border-radius: {{ styles_array['navbar'].borderradius }}px;
+    {% endif %}
+    {% if styles_array['navbar'].boxshadow %}
+        -webkit-box-shadow: {{ styles_array['navbar'].boxshadow }};
+           -moz-box-shadow: {{ styles_array['navbar'].boxshadow }};
+                box-shadow: {{ styles_array['navbar'].boxshadow }};
+    {% endif %}
+}
+@media (min-width: 768px) {
+#navbar .logo img {
+    {% if styles_array['navbar'].logo.img.maxheight %}
+        max-height: {{ styles_array['navbar'].logo.img.maxheight }}px;
+    {% endif %}
+    {% if styles_array['navbar'].logo.img.maxheight %}
+        max-width: {{ styles_array['navbar'].logo.img.maxheight }}px;
+    {% endif %}
+}
+}
+#navbar .navbar-sup {
+    {% if styles_array['navbar'].navbarsup.paddingtop %}
+        padding-top: {{ styles_array['navbar'].navbarsup.paddingtop }}px;
+    {% endif %}
+    {% if styles_array['navbar'].navbarsup.paddingbottom %}
+        padding-bottom: {{ styles_array['navbar'].navbarsup.paddingbottom }}px;
+    {% endif %}
+}
+#navbar .slogan {
+    {% if styles_array['navbar'].slogan.fontsize %}
+        font-size: {{ styles_array['navbar'].slogan.fontsize }}px;
+    {% endif %}
+    {% if styles_array['navbar'].slogan.fontweight %}
+        font-weight: {{ styles_array['navbar'].slogan.fontweight }};
+    {% endif %}
+    {% if styles_array['navbar'].slogan.fontstyle %}
+        font-style: {{ styles_array['navbar'].slogan.fontstyle }};
+    {% endif %}
+    {% if styles_array['navbar'].slogan.color %}
+        color: {{ styles_array['navbar'].slogan.color }};
+    {% endif %}
+    {% if styles_array['navbar'].slogan.textshadow %}
+        text-shadow: {{ styles_array['navbar'].slogan.textshadow }};
+    {% endif %}
+}
+#navbar .collapse {
+    {% if styles_array['navbar'].collapse.background %}
+        background: {{ styles_array['navbar'].collapse.background }};
+    {% endif %}
+    {% if styles_array['navbar'].collapse.borderradius %}
+        border-radius: {{ styles_array['navbar'].collapse.borderradius }}px;
+    {% endif %}
+}
+#navbar .navbar-collapse {
+    {% if styles_array['navbar'].navbarcollapse.textalign %}
+        text-align: {{ styles_array['navbar'].navbarcollapse.textalign }};
+    {% endif %}
+    {% if styles_array['navbar'].navbarcollapse.paddingleft %}
+        padding-left: {{ styles_array['navbar'].navbarcollapse.paddingleft }}px;
+    {% endif %}
+    {% if styles_array['navbar'].navbarcollapse.paddingright %}
+        padding-right: {{ styles_array['navbar'].navbarcollapse.paddingright }}px;
+    {% endif %}
+}
+#navbar .nav > li > a {
+    {% if styles_array['navbar'].nav.li.a.color %}
+        color: {{ styles_array['navbar'].nav.li.a.color }};
+    {% endif %}
+    {% if styles_array['navbar'].nav.li.a.textshadow %}
+        text-shadow: {{ styles_array['navbar'].nav.li.a.textshadow }};
+    {% endif %}
+}
+#navbar .nav > li > a:hover {
+    {% if styles_array['navbar'].nav.li.a.hover.background %}
+        background: {{ styles_array['navbar'].nav.li.a.hover.background }};
+    {% endif %}
+    {% if styles_array['navbar'].nav.li.a.hover.borderradius %}
+        border-radius: {{ styles_array['navbar'].nav.li.a.hover.borderradius }}px;
+    {% endif %}
+    {% if styles_array['navbar'].nav.li.a.hover.color %}
+        color: {{ styles_array['navbar'].nav.li.a.hover.color }};
+    {% endif %}
+    {% if styles_array['navbar'].nav.li.a.hover.textshadow %}
+        text-shadow: {{ styles_array['navbar'].nav.li.a.hover.textshadow }};
+    {% endif %}
+    {% if styles_array['navbar'].nav.li.a.hover.boxshadow %}
+        -webkit-box-shadow: {{ styles_array['navbar'].nav.li.a.hover.boxshadow }};
+                box-shadow: {{ styles_array['navbar'].nav.li.a.hover.boxshadow }};
+    {% endif %}
+}
+#navbar .nav > li.active > a {
+    {% if styles_array['navbar'].nav.li.active.a.background %}
+        background: {{ styles_array['navbar'].nav.li.active.a.background }};
+    {% endif %}
+    {% if styles_array['navbar'].nav.li.active.a.borderradius %}
+        border-radius: {{ styles_array['navbar'].nav.li.active.a.borderradius }}px;
+    {% endif %}
+    {% if styles_array['navbar'].nav.li.active.a.color %}
+        color: {{ styles_array['navbar'].nav.li.active.a.color }};
+    {% endif %}
+    {% if styles_array['navbar'].nav.li.active.a.textshadow %}
+        text-shadow: {{ styles_array['navbar'].nav.li.active.a.textshadow }};
+    {% endif %}
+    {% if styles_array['navbar'].nav.li.active.a.boxshadow %}
+        -webkit-box-shadow: {{ styles_array['navbar'].nav.li.active.a.boxshadow }};
+                box-shadow: {{ styles_array['navbar'].nav.li.active.a.boxshadow }};
+    {% endif %}
+}
+#navbar .nav > li.active > a:hover {
+    {% if styles_array['navbar'].nav.li.a.hover.boxshadow %}
+        -webkit-box-shadow: {{ styles_array['navbar'].nav.li.a.hover.boxshadow }};
+                box-shadow: {{ styles_array['navbar'].nav.li.a.hover.boxshadow }};
+    {% endif %}
+}
+#navbar .dropdown-menu > li > a:hover {
+    {% if styles_array['navbar'].dropdownmenu.li.a.hover.background %}
+        background: {{ styles_array['navbar'].dropdownmenu.li.a.hover.background }};
+    {% endif %}
+    {% if styles_array['navbar'].dropdownmenu.li.a.hover.color %}
+        color: {{ styles_array['navbar'].dropdownmenu.li.a.hover.color }};
+    {% endif %}
+}
+#footer {
+    {% if styles_array['body'].width %}
+        width: {{ styles_array['body'].width }}px;
+    {% endif %}
+}
+#pagemenu {
+    {% if styles_array['pagemenu'].background %}
+        background: {{ styles_array['pagemenu'].background }};
+    {% endif %}
+    {% if styles_array['pagemenu'].borderradius %}
+        border-radius: {{ styles_array['pagemenu'].borderradius }}px;
+    {% endif %}
+    {% if styles_array['pagemenu'].boxshadow %}
+        -webkit-box-shadow: {{ styles_array['pagemenu'].boxshadow }};
+           -moz-box-shadow: {{ styles_array['pagemenu'].boxshadow }};
+                box-shadow: {{ styles_array['pagemenu'].boxshadow }};
+    {% endif %}
+    {% if styles_array['pagemenu'].lineheight %}
+        line-height: {{ styles_array['pagemenu'].lineheight }}px;
+    {% endif %}
+    {% if styles_array['pagemenu'].paddingtop %}
+        padding-top: {{ styles_array['pagemenu'].paddingtop }}px;
+    {% endif %}
+    {% if styles_array['pagemenu'].paddingbottom %}
+        padding-bottom: {{ styles_array['pagemenu'].paddingbottom }}px;
+    {% endif %}
+    {% if styles_array['pagemenu'].margintop %}
+        margin-top: {{ styles_array['pagemenu'].margintop }}px;
+    {% endif %}
+    {% if styles_array['pagemenu'].marginbottom %}
+        margin-bottom: {{ styles_array['pagemenu'].marginbottom }}px;
+    {% endif %}
+}
+#pagemenu > ul > li {
+    {% if styles_array['pagemenu'].ul.li.fontsize %}
+        font-size: {{ styles_array['pagemenu'].ul.li.fontsize }}px;
+    {% endif %}
+}
+#pagemenu > ul > li a {
+    {% if styles_array['pagemenu'].ul.li.a.color %}
+        color: {{ styles_array['pagemenu'].ul.li.a.color }};
+    {% endif %}
+}
+#pagemenu > ul > ul > li {
+    {% if styles_array['pagemenu'].ul.ul.li.fontsize %}
+        font-size: {{ styles_array['pagemenu'].ul.ul.li.fontsize }}px;
+    {% endif %}
+}
+#pagemenu > ul > ul > li a {
+    {% if styles_array['pagemenu'].ul.ul.li.a.color %}
+        color: {{ styles_array['pagemenu'].ul.ul.li.a.color }};
+    {% endif %}
+}
+#pagecontent {
+    {% if styles_array['pagecontent'].paddingright %}
+        padding-right: {{ styles_array['pagecontent'].paddingright }}px;
+    {% endif %}
+    {% if styles_array['pagecontent'].paddingleft %}
+        padding-left: {{ styles_array['pagecontent'].paddingleft }}px;
+    {% endif %}
+}

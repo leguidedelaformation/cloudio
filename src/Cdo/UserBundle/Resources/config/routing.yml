@@ -1,0 +1,12 @@
+fos_user_profile_edit:
+    pattern:  /admin/profile/edit
+    defaults: { _controller: CdoUserBundle:User/Profile:edit }
+
+cdo_user_user_profile:
+    resource: "@CdoUserBundle/Controller/User/ProfileController.php"
+    type:     annotation
+
+cdo_user_user_redirect:
+    resource: "@CdoUserBundle/Controller/User/RedirectController.php"
+    type:     annotation
+

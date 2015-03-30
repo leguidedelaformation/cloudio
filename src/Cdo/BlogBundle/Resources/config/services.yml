@@ -1,0 +1,8 @@
+services:
+    cdo_blog.twig.page_extension:
+        class: Cdo\BlogBundle\Extension\PageExtension
+        arguments:
+            container: "@service_container"
+            doctrine: "@doctrine"
+        tags:
+            - { name: twig.extension }

@@ -1,0 +1,70 @@
+/*~~~ Submenu ~~~*/
+#navbar .dropdown:hover>.dropdown-menu {
+    display: block;
+}
+#navbar .dropdown-submenu {
+	position:relative;
+}
+#navbar .dropdown-submenu>.dropdown-menu {
+	top:0;
+	left:100%;
+	margin-top:-6px;
+	margin-left:-1px;
+	-webkit-border-radius:0;
+	   -moz-border-radius:0;
+	        border-radius:0;
+}
+#navbar .dropdown-submenu:hover>.dropdown-menu{
+	display:block;
+}
+#navbar .dropdown-submenu>a:after{
+	display:block;
+	content:" ";
+	float:right;
+	width:0;
+	height:0;
+	border-color:transparent;
+	border-style:solid;
+	border-width:5px 0 5px 5px;
+	border-left-color:#cccccc;
+	margin-top:5px;
+	margin-right:-10px;
+}
+#navbar .dropdown-submenu:hover>a:after{
+	border-left-color:#ffffff;
+}
+#navbar .dropdown-submenu.pull-left{
+	float:none;
+}
+#navbar .dropdown-submenu.pull-left>.dropdown-menu{
+	left:-100%;
+	margin-left:10px;
+	-webkit-border-radius:0;
+	   -moz-border-radius:0;
+	        border-radius:0;
+}
+
+/*~~~ Sticky footer ~~~*/
+html, body {
+	height: 100%;
+}
+#header {
+	height: 100px;
+}
+#wrap {
+	margin: auto;
+    min-height: 100%;
+    /* margin-bottom equal to footer height */
+	margin-bottom: -100px;
+    /* margin-top opposite to padding-top. Value depending on header height. */
+	margin-top: -148px;
+	padding-top: 148px;
+}
+#wrap:after {
+  content: "";
+  display: block;
+}
+#footer, #wrap:after {
+    /* height equals wrap margin-bottom */
+	height: 100px;
+}

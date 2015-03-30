@@ -1,0 +1,15 @@
+{% extends "CdoSiteBundle:Admin:layout.html.twig" %}
+
+{% block title %}
+    Paramètres {{ parent() }}
+{% endblock title %}
+
+{% block sidemenu_params %}
+    <div class="menu-item-1"><a href="{{ path('cdo_site_admin_params_site', {'subdomain': app.session.get('subdomain')}) }}">Général</a></div>
+    <div class="menu-item-1"><a href="{{ path('cdo_site_admin_params_social', {'subdomain': app.session.get('subdomain')}) }}">Réseaux sociaux</a></div>
+    <div class="menu-item-1"><a href="{{ path('cdo_site_admin_params_page', {'subdomain': app.session.get('subdomain')}) }}">Pages</a></div>
+{% endblock sidemenu_params %}
+
+{% block heading %}
+    <h1>Paramètres</h1>
+{% endblock heading %}

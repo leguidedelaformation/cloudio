@@ -1,0 +1,12 @@
+Cdo\UserBundle\Entity\User:
+    properties:
+        firstname:
+            - NotBlank: { groups: [firstname] }
+        lastname:
+            - NotBlank: { groups: [lastname] }
+        phone:
+            - Regex:
+                pattern: '/^[(]?(0|\+33)[)]?[-. ]?([(][0][)])?[-. ]?[1-9]([-. ]?[0-9]){8}$/'
+                message: Ceci n'est pas un numéro de téléphone valide.
+                groups: [phone]
+            - NotBlank: { groups: [phone] }

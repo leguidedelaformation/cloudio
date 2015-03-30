@@ -1,0 +1,33 @@
+{% extends "CdoSiteBundle:Admin:layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('plugin/bootstrap-colorpicker-master/css/bootstrap-colorpicker.min.css') }}" />
+{% endblock stylesheets %}
+
+{% block title %}
+    Apparence {{ parent() }}
+{% endblock title %}
+
+{% block sidemenu_style %}
+    <div class="menu-item-1"><a href="{{ path('cdo_site_admin_styles_body', {'subdomain': app.session.get('subdomain')}) }}">Général</a></div>
+    <div class="menu-item-1"><a href="{{ path('cdo_site_admin_styles_header', {'subdomain': app.session.get('subdomain')}) }}">En-tête</a></div>
+    <div class="menu-item-1"><a href="{{ path('cdo_site_admin_styles_navbar', {'subdomain': app.session.get('subdomain')}) }}">Menu principal</a></div>
+    <div class="menu-item-1"><a href="{{ path('cdo_site_admin_styles_content', {'subdomain': app.session.get('subdomain')}) }}">Contenu</a></div>
+    <div class="menu-item-1"><a href="{{ path('cdo_site_admin_styles_footer', {'subdomain': app.session.get('subdomain')}) }}">Pied de page</a></div>
+    <div class="menu-item-1"><a href="{{ path('cdo_site_admin_styles_sheet', {'subdomain': app.session.get('subdomain')}) }}">Feuille de style</a></div>
+{% endblock sidemenu_style %}
+
+{% block heading %}
+    <h1>Apparence</h1>
+{% endblock heading %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('plugin/bootstrap-colorpicker-master/js/bootstrap-colorpicker.min.js') }}"></script>
+    <script>
+	    $(function () {
+	        $('.colorpick').colorpicker();
+	    })
+    </script>
+{% endblock javascripts %}

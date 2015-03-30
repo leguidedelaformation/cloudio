@@ -1,0 +1,50 @@
+{% extends "CdoUserBundle:User:layout.html.twig" %}
+
+{% block innercontent %}
+    <h2>Profil</h2>
+    {% include "CdoUserBundle:User/Profile:show_content.html.twig" %}
+	<div class="row">
+	    <div class="col-sm-3 text-right">
+	        Nom
+	    </div><!-- /.col-sm-3 -->
+	    <div class="col-sm-9">
+	        {% if user.lastname %}
+	            {{ user.lastname }}
+	        {% else %}
+	            <a href="{{ path('cdo_user_user_profile_edit', {'subdomain': app.session.get('subdomain')}) }}">Editer</a>
+	        {% endif %}
+	    </div><!-- /.col-sm-9 -->
+    </div><!-- /.row -->
+	<div class="row">
+	    <div class="col-sm-3 text-right">
+	        Prénom
+	    </div><!-- /.col-sm-3 -->
+	    <div class="col-sm-9">
+	        {% if user.firstname %}
+	            {{ user.firstname }}
+	        {% else %}
+	            <a href="#">Editer</a>
+	        {% endif %}
+	    </div><!-- /.col-sm-9 -->
+    </div><!-- /.row -->
+	<div class="row">
+	    <div class="col-sm-3 text-right">
+	        Téléphone
+	    </div><!-- /.col-sm-3 -->
+	    <div class="col-sm-9">
+	        {% if user.phone %}
+	            {{ user.phone }}
+	        {% else %}
+	            <a href="#">Editer</a>
+	        {% endif %}
+	    </div><!-- /.col-sm-9 -->
+    </div><!-- /.row -->
+	<div class="row">
+	    <div class="col-sm-3 text-right">
+	        Date d'inscription
+	    </div><!-- /.col-sm-3 -->
+	    <div class="col-sm-9">
+	        {{ user.createdAt|date('d/m/Y - H:i:s') }}
+	    </div><!-- /.col-sm-9 -->
+    </div><!-- /.row -->
+{% endblock innercontent %}

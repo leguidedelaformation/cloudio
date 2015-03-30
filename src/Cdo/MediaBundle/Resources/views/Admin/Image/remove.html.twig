@@ -1,0 +1,15 @@
+{% extends "CdoMediaBundle:Admin/Image:layout.html.twig" %}
+
+{% block image_content %}
+    <div class="text-center">
+        <img src="{{ asset(image.webPath) }}" alt="{{ image.alt }}" />
+    </div><!-- /.text-center -->
+    <p class="text-center">Etes-vous certain(e) de vouloir supprimer l'image &laquo; <b>{{ image.alt }}</b> &raquo; ?</p>
+    <p class="text-center">Vous ne pourrez pas revenir sur cette action.</p>
+    <br />
+    <form action="{{ path('cdo_media_admin_image_remove', {'id': image.id, 'subdomain': app.session.get('subdomain')}) }}" method="post" class="text-center">
+        <a href="{{ app.request.headers.get('referer') }}" class="btn btn-default btn-lg">Annuler</a>
+        <input type="submit" value="Supprimer" class="btn btn-danger btn-lg" />
+        {{ form_rest(form) }}
+    </form>
+{% endblock image_content %}

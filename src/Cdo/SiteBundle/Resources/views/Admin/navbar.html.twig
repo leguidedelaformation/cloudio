@@ -1,0 +1,21 @@
+<div id="navbar">
+    <div class="row">
+        <div class="col-xs-2">
+            <a href="{{ path('cdo_site_admin_site_dashboard', {'subdomain': app.session.get('subdomain')}) }}">Tableau de bord <span class="sr-only">Tableau de bord</span></a>
+        </div><!-- /.col-xs-2 -->
+        <div class="col-xs-2">
+            <a href="{{ path('cdo_blog_visitor_page_homepage', {'subdomain': app.session.get('subdomain')}) }}" target="_blank">Site internet <span class="sr-only">Site internet</span></a>
+        </div><!-- /.col-xs-2 -->
+        <div class="col-xs-3 col-xs-offset-5 text-right">
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="userDropdown">
+                    Bienvenue, {{ app.user.username }}  <span class="sr-only">Bienvenue, {{ app.user.username }}</span><span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="userDropdown" id="usermenu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('cdo_user_user_profile_show', {'subdomain': app.session.get('subdomain')}) }}">Profil <span class="sr-only">Profil</span></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('fos_user_security_logout') }}">Déconnexion <span class="sr-only">Déconnexion</span></a></li>
+                </ul>
+            </div>
+        </div><!-- /.col-xs-8 -->
+    </div><!-- /.row -->
+</div><!-- /#navbar -->

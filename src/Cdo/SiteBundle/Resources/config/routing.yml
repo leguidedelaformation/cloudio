@@ -1,0 +1,20 @@
+cdo_site_admin_site:
+    resource: "@CdoSiteBundle/Controller/Admin/SiteController.php"
+    type:     annotation
+
+cdo_site_admin_menu:
+    resource: "@CdoSiteBundle/Controller/Admin/MenuController.php"
+    type:     annotation
+
+cdo_site_admin_params:
+    resource: "@CdoSiteBundle/Controller/Admin/ParamsController.php"
+    type:     annotation
+
+cdo_site_admin_styles:
+    resource: "@CdoSiteBundle/Controller/Admin/StylesController.php"
+    type:     annotation
+
+cdo_site_visitor_site:
+    resource: "@CdoSiteBundle/Controller/Visitor/SiteController.php"
+    type:     annotation
+

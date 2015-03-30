@@ -1,0 +1,256 @@
+{% extends "CdoSiteBundle:Admin/Form:update.html.twig" %}
+
+{% form_theme form 'CdoSiteBundle:Form:radio_margin.html.twig' %}
+
+{% block formfields %}
+    <h3>Général</h3>
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.wrap_width) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.wrap_width) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.wrap_width) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.wrap_background) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.wrap_background, { 'attr': {'class': 'colorpick'} }) }}
+            {{ form_errors(form.wrap_background) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.wrap_color) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.wrap_color, { 'attr': {'class': 'colorpick'} }) }}
+            {{ form_errors(form.wrap_color) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.wrap_fontsize) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.wrap_fontsize) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.wrap_fontsize) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.wrap_containerfluid_paddingtop) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.wrap_containerfluid_paddingtop) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.wrap_containerfluid_paddingtop) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.wrap_containerfluid_paddingbottom) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.wrap_containerfluid_paddingbottom) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.wrap_containerfluid_paddingbottom) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.wrap_containerfluid_paddingleft) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.wrap_containerfluid_paddingleft) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.wrap_containerfluid_paddingleft) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.wrap_containerfluid_paddingright) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.wrap_containerfluid_paddingright) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.wrap_containerfluid_paddingright) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <h3>Menu latéral</h3>
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.pagemenu_background) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.pagemenu_background, { 'attr': {'class': 'colorpick'} }) }}
+            {{ form_errors(form.pagemenu_background) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.pagemenu_borderradius) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.pagemenu_borderradius) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.pagemenu_borderradius) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.pagemenu_boxshadow) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9 text-left">
+            {{ form_widget(form.pagemenu_boxshadow) }}
+            {{ form_errors(form.pagemenu_boxshadow) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.pagemenu_lineheight) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.pagemenu_lineheight) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.pagemenu_lineheight) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.pagemenu_paddingtop) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.pagemenu_paddingtop) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.pagemenu_paddingtop) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.pagemenu_paddingbottom) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.pagemenu_paddingbottom) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.pagemenu_paddingbottom) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.pagemenu_margintop) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.pagemenu_margintop) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.pagemenu_margintop) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.pagemenu_marginbottom) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.pagemenu_marginbottom) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.pagemenu_marginbottom) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <h4>Liens de niveau 1 :</h4>
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.pagemenu_ul_li_fontsize) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.pagemenu_ul_li_fontsize) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.pagemenu_ul_li_fontsize) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.pagemenu_ul_li_a_color) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.pagemenu_ul_li_a_color, { 'attr': {'class': 'colorpick'} }) }}
+            {{ form_errors(form.pagemenu_ul_li_a_color) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <h4>Liens de niveau 2 :</h4>
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.pagemenu_ul_ul_li_fontsize) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.pagemenu_ul_ul_li_fontsize) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.pagemenu_ul_ul_li_fontsize) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.pagemenu_ul_ul_li_a_color) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.pagemenu_ul_ul_li_a_color, { 'attr': {'class': 'colorpick'} }) }}
+            {{ form_errors(form.pagemenu_ul_ul_li_a_color) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.pagecontent_paddingleft) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.pagecontent_paddingleft) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.pagecontent_paddingleft) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.pagecontent_paddingright) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.pagecontent_paddingright) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.pagecontent_paddingright) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+{% endblock formfields %}

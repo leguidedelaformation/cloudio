@@ -1,0 +1,63 @@
+{% extends "CdoBlogBundle:Admin:layout.html.twig" %}
+
+{% block addbutton %}
+    <a href="{{ path('cdo_blog_admin_page_create', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg" aria-label="Ajouter">Ajouter</a>
+{% endblock addbutton %}
+
+{% block innercontent %}
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th class="text-center">Statut</th>
+                    <th class="text-center">Menu</th>
+                    <th class="text-center">Position</th>
+                    <th class="text-center">Editer</th>
+                    <th class="text-center">Supprimer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for page in page_collection %}
+                    <tr>
+                        <td style="text-indent:{{ page.level }}em">
+                            {% if page.display %}
+                                <a href="{{ path('cdo_blog_visitor_page_show', {'slug': page.slug, 'subdomain': app.session.get('subdomain')}) }}" rel="tooltip" data-original-title="Voir" target="_blank">
+                                    {{ page.title }} <span class="sr-only">{{ page.title }}</span>
+                                </a>
+                            {% else %}
+                                {{ page.title }} <span class="sr-only">{{ page.title }}</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            {% if page.display %}Publié{% else %}Dépublié{% endif %}
+                        </td>
+                        <td class="text-center">
+                            {% set var = false %}
+                            {% if not page.children is empty %}
+                                {% for child in page.children %}
+                                    {% if child.display %}
+                                       {% set var = true %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </td>
+                        <td class="text-center">{{ page.rank }}</td>
+                        <td class="text-center">
+                              <a href="{{ path('cdo_blog_admin_page_update', {'page': page.id, 'subdomain': app.session.get('subdomain')}) }}" aria-label="Editer" rel="tooltip" data-original-title="Editer">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                        </td>
+                        <td class="text-center">
+                            {% if page.children is empty and not page.homepage %}
+                                  <a href="{{ path('cdo_blog_admin_page_remove', {'page': page.id, 'subdomain': app.session.get('subdomain')}) }}" aria-label="Supprimer" rel="tooltip" data-original-title="Supprimer">
+                                      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                  </a>
+                             {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock innercontent %}

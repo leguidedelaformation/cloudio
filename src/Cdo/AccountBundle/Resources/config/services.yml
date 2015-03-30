@@ -1,0 +1,4 @@
+services:
+#    cdo_account.example:
+#        class: Cdo\AccountBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

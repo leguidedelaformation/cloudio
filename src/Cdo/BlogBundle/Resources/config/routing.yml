@@ -1,0 +1,8 @@
+cdo_blog_admin_page:
+    resource: "@CdoBlogBundle/Controller/Admin/PageController.php"
+    type:     annotation
+
+cdo_blog_visitor_page:
+    resource: "@CdoBlogBundle/Controller/Visitor/PageController.php"
+    type:     annotation
+

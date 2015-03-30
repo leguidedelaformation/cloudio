@@ -1,0 +1,196 @@
+{% extends "CdoSiteBundle:Admin/Form:update.html.twig" %}
+
+{% form_theme form 'CdoSiteBundle:Form:radio_margin.html.twig' %}
+
+{% block formfields %}
+    <h3>Général :</h3>
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_navbarcollapse_textalign) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9 text-left">
+            {{ form_widget(form.navbar_navbarcollapse_textalign) }}
+            {{ form_errors(form.navbar_navbarcollapse_textalign) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_navbarcollapse_paddingleft) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.navbar_navbarcollapse_paddingleft) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.navbar_navbarcollapse_paddingleft) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_navbarcollapse_paddingright) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.navbar_navbarcollapse_paddingright) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.navbar_navbarcollapse_paddingright) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_collapse_background) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.navbar_collapse_background, { 'attr': {'class': 'colorpick'} }) }}
+            {{ form_errors(form.navbar_collapse_background) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_collapse_borderradius) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.navbar_collapse_borderradius) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.navbar_collapse_borderradius) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_nav_li_a_color) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.navbar_nav_li_a_color, { 'attr': {'class': 'colorpick'} }) }}
+            {{ form_errors(form.navbar_nav_li_a_color) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_nav_li_a_textshadow) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9 text-left">
+            {{ form_widget(form.navbar_nav_li_a_textshadow) }}
+            {{ form_errors(form.navbar_nav_li_a_textshadow) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <h3>Survol de l'onglet :</h3>
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_nav_li_a_hover_background) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.navbar_nav_li_a_hover_background, { 'attr': {'class': 'colorpick'} }) }}
+            {{ form_errors(form.navbar_nav_li_a_hover_background) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_nav_li_a_hover_borderradius) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.navbar_nav_li_a_hover_borderradius) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.navbar_nav_li_a_hover_borderradius) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_nav_li_a_hover_color) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.navbar_nav_li_a_hover_color, { 'attr': {'class': 'colorpick'} }) }}
+            {{ form_errors(form.navbar_nav_li_a_hover_color) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_nav_li_a_hover_textshadow) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9 text-left">
+            {{ form_widget(form.navbar_nav_li_a_hover_textshadow) }}
+            {{ form_errors(form.navbar_nav_li_a_hover_textshadow) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_nav_li_a_hover_boxshadow) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9 text-left">
+            {{ form_widget(form.navbar_nav_li_a_hover_boxshadow) }}
+            {{ form_errors(form.navbar_nav_li_a_hover_boxshadow) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <h3>Survol du menu déroulant :</h3>
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_dropdownmenu_li_a_hover_background) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.navbar_dropdownmenu_li_a_hover_background, { 'attr': {'class': 'colorpick'} }) }}
+            {{ form_errors(form.navbar_dropdownmenu_li_a_hover_background) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_dropdownmenu_li_a_hover_color) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.navbar_dropdownmenu_li_a_hover_color, { 'attr': {'class': 'colorpick'} }) }}
+            {{ form_errors(form.navbar_dropdownmenu_li_a_hover_color) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <h3>Onglet actif :</h3>
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_nav_li_active_a_background) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.navbar_nav_li_active_a_background, { 'attr': {'class': 'colorpick'} }) }}
+            {{ form_errors(form.navbar_nav_li_active_a_background) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_nav_li_active_a_borderradius) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            <div class="input-group">
+                {{ form_widget(form.navbar_nav_li_active_a_borderradius) }}
+                <div class="input-group-addon">px</div>
+            </div><!-- /.input-group -->
+            {{ form_errors(form.navbar_nav_li_active_a_borderradius) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_nav_li_active_a_color) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.navbar_nav_li_active_a_color, { 'attr': {'class': 'colorpick'} }) }}
+            {{ form_errors(form.navbar_nav_li_active_a_color) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_nav_li_active_a_textshadow) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9 text-left">
+            {{ form_widget(form.navbar_nav_li_active_a_textshadow) }}
+            {{ form_errors(form.navbar_nav_li_active_a_textshadow) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.navbar_nav_li_active_a_boxshadow) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9 text-left">
+            {{ form_widget(form.navbar_nav_li_active_a_boxshadow) }}
+            {{ form_errors(form.navbar_nav_li_active_a_boxshadow) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+{% endblock formfields %}

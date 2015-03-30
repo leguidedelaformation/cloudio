@@ -1,0 +1,56 @@
+{% extends "CdoSiteBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/admin/styles.css') }}" />
+{% endblock stylesheets %}
+
+{% block title %}
+    | Admin {{ parent() }}
+{% endblock title %}
+
+{% block container %}
+    {% include "CdoSiteBundle:Admin:navbar.html.twig" %}
+    <div id="content">
+        <div class="row" id="test1">
+            <div class="col-xs-2" id="test2">
+                <div id="sidemenu">
+                    <div class="menu-item-0"><a href="{{ path('cdo_blog_admin_page_index', {'subdomain': app.session.get('subdomain')}) }}">Pages</a></div>
+                    <div class="menu-item-0"><a href="{{ path('cdo_site_admin_params_index', {'subdomain': app.session.get('subdomain')}) }}">Paramètres</a></div>
+                    {% block sidemenu_params %}
+                    {% endblock sidemenu_params %}
+                    <div class="menu-item-0"><a href="{{ path('cdo_site_admin_styles_index', {'subdomain': app.session.get('subdomain')}) }}">Apparence</a></div>
+                    {% block sidemenu_style %}
+                    {% endblock sidemenu_style %}
+                    <div class="menu-item-0"><a href="{{ path('cdo_media_admin_image_index', {'subdomain': app.session.get('subdomain')}) }}">Images</a></div>
+                </div><!-- /#sidemenu -->
+            </div><!-- /.col-xs-2 -->
+            <div class="col-xs-10">
+                <div id="addbutton">
+                    {% block addbutton %}
+                    {% endblock addbutton %}
+                </div><!-- /#addbutton -->
+                {% block heading %}
+                {% endblock heading %}
+                {% for message in app.session.flashbag.get('error') %}
+                    <div class="alert alert-danger">{{ message }}</div>
+                {% endfor %}
+                {% for message in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+                {% for message in app.session.flashbag.get('warning') %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                {% endfor %}
+                <div id="innercontent">
+	                {% block innercontent %}
+	                {% endblock innercontent %}
+                </div><!-- /#innercontent -->
+            </div><!-- /.col-xs-10 -->
+        </div><!-- /.row -->
+    </div><!-- /#content -->
+{% endblock container %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/admin/scripts.js') }}"></script>
+{% endblock javascripts %}

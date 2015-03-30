@@ -1,0 +1,49 @@
+{% extends "CdoSiteBundle:Admin/Form:update.html.twig" %}
+
+{% block formfields %}
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.social_color) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.social_color, { 'attr': {'class': 'form-control'} }) }}
+            {{ form_errors(form.social_color) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.social_facebook) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.social_facebook) }}
+            {{ form_errors(form.social_facebook) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.social_twitter) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.social_twitter) }}
+            {{ form_errors(form.social_twitter) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.social_google) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.social_google) }}
+            {{ form_errors(form.social_google) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.social_linkedin) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.social_linkedin) }}
+            {{ form_errors(form.social_linkedin) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+{% endblock formfields %}
