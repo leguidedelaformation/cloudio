@@ -65,13 +65,18 @@ class PageController extends Controller
             
             if($form->isValid())
             {
-                if ($page_parent = $page->getParent()) {
-                	if (!$page_parent->getDisplay() AND $page->getDisplay()) {
+                $parent = $form['parent']->getData();
+                if ($parent) {
+                	if (!$parent->getDisplay() AND $page->getDisplay()) {
         	            throw new \Exception('Une nouvelle page ne peut être affiliée qu\'à une page publiée.');
                 	}
                 }
                 
                 $em->persist($page);
+                if ($parent) {
+                	$em->flush();
+                	$page->setParentNode($parent);
+                }
                 
                 $event = new PagePostEvent($securityContext, $page, $em);
                 $this->get('event_dispatcher')->dispatch(PageEvents::onPagePost, $event);
@@ -118,7 +123,7 @@ class PageController extends Controller
         	$rank_array[] = $i;
         }
         
-    	$form = $this->createForm(new UpdateType($account->getId(), $page->getId(), $rank_array), $page);
+    	$form = $this->createForm(new UpdateType($account->getId(), $page, $rank_array, $this->getDoctrine()->getManager()), $page);
         
         $request = $this->get('request');
         
@@ -133,6 +138,10 @@ class PageController extends Controller
                 $event->setLevel();
                 $event->updateRanks();
                 $event->checkSlug();
+                if ($parent = $form['parent']->getData()) {
+                	$page->setParentNode($parent);
+                	$em->flush();
+                }
                 
                 if (!$page->getDisplay()) {
                     foreach ($page->getChildren() as $page_item) {

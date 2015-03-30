@@ -34,8 +34,8 @@
                         </td>
                         <td class="text-center">
                             {% set var = false %}
-                            {% if not page.children is empty %}
-                                {% for child in page.children %}
+                            {% if not page.childNodes is empty %}
+                                {% for child in page.childNodes %}
                                     {% if child.display %}
                                        {% set var = true %}
                                     {% endif %}
@@ -49,7 +49,7 @@
                               </a>
                         </td>
                         <td class="text-center">
-                            {% if page.children is empty and not page.homepage %}
+                            {% if page.childNodes is empty and not page.homepage %}
                                   <a href="{{ path('cdo_blog_admin_page_remove', {'page': page.id, 'subdomain': app.session.get('subdomain')}) }}" aria-label="Supprimer" rel="tooltip" data-original-title="Supprimer">
                                       <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                   </a>

@@ -81,16 +81,6 @@ class Page implements ORMBehaviors\Tree\NodeInterface, \ArrayAccess
      * @ORM\Column(name="homepage", type="boolean")
      */
     private $homepage;
-    
-    /**
-     * @ORM\ManyToOne(targetEntity="Cdo\BlogBundle\Entity\Page", inversedBy="children")
-     */
-    private $parent;
-    
-    /**
-     * @ORM\OneToMany(targetEntity="Cdo\BlogBundle\Entity\Page", mappedBy="parent")
-     */
-    private $children;
 
 
     /**
@@ -286,62 +276,6 @@ class Page implements ORMBehaviors\Tree\NodeInterface, \ArrayAccess
     {
         return $this->homepage;
     }
-
-    /**
-     * Set parent
-     *
-     * @param \Cdo\BlogBundle\Entity\Page $parent
-     * @return Page
-     */
-    public function setParent(\Cdo\BlogBundle\Entity\Page $parent = null)
-    {
-        $this->parent = $parent;
-
-        return $this;
-    }
-
-    /**
-     * Get parent
-     *
-     * @return \Cdo\BlogBundle\Entity\Page 
-     */
-    public function getParent()
-    {
-        return $this->parent;
-    }
-
-    /**
-     * Add children
-     *
-     * @param \Cdo\BlogBundle\Entity\Page $children
-     * @return Page
-     */
-    public function addChild(\Cdo\BlogBundle\Entity\Page $children)
-    {
-        $this->children[] = $children;
-
-        return $this;
-    }
-
-    /**
-     * Remove children
-     *
-     * @param \Cdo\BlogBundle\Entity\Page $children
-     */
-    public function removeChild(\Cdo\BlogBundle\Entity\Page $children)
-    {
-        $this->children->removeElement($children);
-    }
-
-    /**
-     * Get children
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getChildren()
-    {
-        return $this->children;
-    }
     
     
     /**
@@ -353,6 +287,5 @@ class Page implements ORMBehaviors\Tree\NodeInterface, \ArrayAccess
         $this->setHomepage(false);
         $this->setRank(999);
         $this->setLevel(0);
-        $this->children = new \Doctrine\Common\Collections\ArrayCollection();
     }
 }

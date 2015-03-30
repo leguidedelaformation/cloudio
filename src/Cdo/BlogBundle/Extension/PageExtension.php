@@ -41,13 +41,13 @@ class PageExtension extends \Twig_Extension
         	foreach ($page_level[1] as $page_1)
         	{
         	    
-        	    if ($page_1->getParent() == $page_0)
+        	    if ($page_1->getParentNode() == $page_0)
         	    {
         	        $page_collection->add($page_1);
                     $page_1_array = array();
         	        foreach ($page_level[2] as $page_2)
         	        {
-        	        	if ($page_2->getParent() == $page_1)
+        	        	if ($page_2->getParentNode() == $page_1)
         	        	{
         	        		$page_collection->add($page_2);
                             $page_1_array[] = array(

@@ -160,10 +160,9 @@ class LoadPage extends AbstractFixture implements OrderedFixtureInterface, Conta
                 	if ($page_array['parent']) {
                 		$manager->persist($page);
                 		$manager->flush();
-                		$page_parent = $entityManager->getRepository('CdoBlogBundle:Page')
-	                                                 ->getByRank($account, $page_array['parent']);
-	                    $page->setParent($page_parent);
-//	                    $page->parent_id = $page_parent->getId();
+                		$parent = $entityManager->getRepository('CdoBlogBundle:Page')
+	                                            ->getByRank($account, $page_array['parent']);
+	                    $page->setParentNode($parent);
                 	}
                     
                     $manager->persist($page);

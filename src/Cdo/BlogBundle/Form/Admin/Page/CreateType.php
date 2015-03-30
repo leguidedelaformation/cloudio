@@ -26,15 +26,26 @@ class CreateType extends PageType
         parent::buildForm($builder, $options);
         
         $builder
+//            ->add('parent', 'entity', array(
+//                'class' => 'CdoBlogBundle:Page',
+//                'query_builder' => function(PageRepository $pr) use ($account_id, $page_level_max)
+//                {
+//                    return $pr->getSuplevelForm($account_id, $page_level_max - 1);
+//                },
+//                'property' => 'title',
+//                'label' => 'Page parente :',
+//                'required' => false,
+//            ))
             ->add('parent', 'entity', array(
                 'class' => 'CdoBlogBundle:Page',
-                'query_builder' => function(PageRepository $pr) use ($account_id, $page_level_max)
+                'query_builder' => function(PageRepository $pr) use ($account_id)
                 {
-                    return $pr->getSuplevelForm($account_id, $page_level_max - 1);
+                    return $pr->getRootLevelNodes($account_id);
                 },
                 'property' => 'title',
                 'label' => 'Page parente :',
                 'required' => false,
+                'mapped' => false,
             ))
         ;
     }

@@ -24,7 +24,7 @@ class PagePostEvent extends Event
         $page = $this->page;
         $em = $this->entityManager;
         
-    	if ($parent = $page->getParent())
+    	if ($parent = $page->getParentNode())
     	{
     		$page->setLevel($parent->getLevel() + 1);
     	} else {

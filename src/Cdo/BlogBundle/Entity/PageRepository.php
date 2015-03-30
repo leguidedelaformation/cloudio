@@ -5,9 +5,12 @@ namespace Cdo\BlogBundle\Entity;
 use Doctrine\ORM\EntityRepository;
 use Cdo\BlogBundle\Entity\Page;
 use Cdo\AccountBundle\Entity\Account;
+use Knp\DoctrineBehaviors\ORM as ORMBehaviors;
 
 class PageRepository extends EntityRepository
 {
+    use ORMBehaviors\Tree\Tree;
+    
     public function getAllOrderedRank(Account $account)
     {
         $qb = $this->createQueryBuilder('p')
@@ -126,6 +129,21 @@ class PageRepository extends EntityRepository
         
         return $qb;
     }
+
+	public function getRootLevelNodes($account_id)
+	{
+        $qb = $this->createQueryBuilder('p')
+                   ->join('p.account', 'a')
+                   ->where('a.id = :account_id')
+                   ->setParameter('account_id', $account_id)
+                   ->andWhere('p.display = :display')
+                   ->setParameter('display', true)
+                   ->addOrderBy('p.rank')
+                   ;
+	
+	    return $qb->andWhere($qb->expr()->eq('p.materializedPath', '?1'))
+	              ->setParameter(1, '');
+	}
     
     public function getSuplevelButPageForm($account_id, $page_id, $level)
     {
@@ -145,6 +163,23 @@ class PageRepository extends EntityRepository
         
         return $qb;
     }
+
+	public function getRootLevelNodesButPage($account_id, $page_id)
+	{
+        $qb = $this->createQueryBuilder('p')
+                   ->join('p.account', 'a')
+                   ->where('a.id = :account_id')
+                   ->setParameter('account_id', $account_id)
+                   ->andWhere('p.id != :page_id')
+                   ->setParameter('page_id', $page_id)
+                   ->andWhere('p.display = :display')
+                   ->setParameter('display', true)
+                   ->addOrderBy('p.rank')
+                   ;
+	
+	    return $qb->andWhere($qb->expr()->eq('p.materializedPath', '?1'))
+	              ->setParameter(1, '');
+	}
     
     public function hasChildrenDisplay(Page $page)
     {

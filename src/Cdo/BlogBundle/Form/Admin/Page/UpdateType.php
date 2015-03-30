@@ -4,29 +4,41 @@ namespace Cdo\BlogBundle\Form\Admin\Page;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Cdo\BlogBundle\Entity\Page;
 use Cdo\BlogBundle\Entity\PageRepository;
 use Symfony\Component\Form\FormEvents;use Symfony\Component\Form\FormEvent;
 
 class UpdateType extends PageType
 {
     protected $account_id;
-    protected $page_id;
+    protected $page;
     protected $rank_array;
+    protected $em;
     
-    public function __construct($account_id, $page_id, $rank_array)
+    public function __construct($account_id, $page, $rank_array, $em)
     {
         $this->account_id = $account_id;
-        $this->page_id = $page_id;
+        $this->page = $page;
     	$this->rank_array = $rank_array;
+    	$this->em = $em;
     }
     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $account_id = $this->account_id;
-        $page_id = $this->page_id;
+        $page = $this->page;
         $rank_array = $this->rank_array;
+        $em = $this->em;
     	$cdo_blog_page_level_max = $GLOBALS['kernel']->getContainer()->getParameter('cdo_blog_page_level_max');
-        
+    	
+    	$root = $em->getRepository('CdoBlogBundle:Page')->getTree($page->getRealMaterializedPath(), 'p');
+    	$parent = $root->getParentNode();
+//    	$root = $em->getRepository('CdoBlogBundle:Page')->getTree();
+//    	$page_parent_id = ($page->getParentNode())
+//    	    ? $page->getParentNode()
+//    	    : null;
+//        $root->getParentMaterializedPath();
+        die ($parent->getNodeId());
         parent::buildForm($builder, $options);
         
         $builder
@@ -38,15 +50,28 @@ class UpdateType extends PageType
                 ),
                 'expanded' => true,
             ))
+//            ->add('parent', 'entity', array(
+//                'class' => 'CdoBlogBundle:Page',
+//                'query_builder' => function(PageRepository $pr) use ($account_id, $page_id, $cdo_blog_page_level_max)
+//                {
+//                    return $pr->getSuplevelButPageForm($account_id, $page_id, $cdo_blog_page_level_max - 1);
+//                },
+//                'property' => 'title',
+//                'label' => 'Page parente :',
+//                'required' => false,
+//            ))
             ->add('parent', 'entity', array(
                 'class' => 'CdoBlogBundle:Page',
-                'query_builder' => function(PageRepository $pr) use ($account_id, $page_id, $cdo_blog_page_level_max)
+                'query_builder' => function(PageRepository $pr) use ($account_id, $page)
                 {
-                    return $pr->getSuplevelButPageForm($account_id, $page_id, $cdo_blog_page_level_max - 1);
+                    return $pr->getRootLevelNodesButPage($account_id, $page->getId());
                 },
                 'property' => 'title',
                 'label' => 'Page parente :',
                 'required' => false,
+                'mapped' => false,
+                'data' => $page_parent_id,
+//                'data' => $this->em->getReference("CdoBlogBundle:Page", 19),
             ))
             ->add('rank', 'choice', array(
                 'label'    => 'Position :',
@@ -54,7 +79,7 @@ class UpdateType extends PageType
             ))
         ;
         
-        $factory = $builder->getFormFactory();        $builder->addEventListener(            FormEvents::PRE_SET_DATA,            function(FormEvent $event) use ($factory) {	            $page = $event->getData();	            if (null === $page) {                    return;                }	            if (null === $page->getParent()) {                    return;                }                if (false === $page->getParent()->getDisplay()) { 
+        $factory = $builder->getFormFactory();        $builder->addEventListener(            FormEvents::PRE_SET_DATA,            function(FormEvent $event) use ($factory) {	            $page_update = $event->getData();	            if (null === $page_update) {                    return;                }	            if (null === $page_update->getParentNode()) {                    return;                }                if (false === $page_update->getParentNode()->getDisplay()) { 
 	                $event->getForm()->remove('display');
 	            }            }
         );
