@@ -12,7 +12,6 @@ use Cdo\BlogBundle\Form\Admin\Page\UpdateType;
 use Cdo\BlogBundle\Event\PageEvents;
 use Cdo\BlogBundle\Event\PagePostEvent;
 use Cdo\BlogBundle\Event\PageRemoveEvent;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @Route("/admin/page")
@@ -103,10 +102,11 @@ class PageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $securityContext = $this->get('security.context');
+        $cdo_blog_page_level_max = $this->container->getParameter('cdo_blog_page_level_max');
         
         $account = $this->getUser()->getAccount();
         if ($account->getId() != $page->getAccount()->getId()) {
-	        throw new AccessDeniedException();
+            return $this->redirect($this->generateUrl('ptm_site_visitor_error_accessdenied'));
         }
         
         $page_count = $em->getRepository('CdoBlogBundle:Page')
@@ -118,7 +118,7 @@ class PageController extends Controller
         	$rank_array[] = $i;
         }
         
-    	$form = $this->createForm(new UpdateType($account->getId(), $page->getId(), $rank_array), $page);
+    	$form = $this->createForm(new UpdateType($account->getId(), $page->getId(), $rank_array, $cdo_blog_page_level_max), $page);
         
         $request = $this->get('request');
         
@@ -168,7 +168,7 @@ class PageController extends Controller
         
         $account = $this->getUser()->getAccount();
         if ($account->getId() != $page->getAccount()->getId()) {
-	        throw new AccessDeniedException();
+	        return $this->redirect($this->generateUrl('ptm_site_visitor_error_accessdenied'));
         }
         
         $page_title = $page->getTitle();

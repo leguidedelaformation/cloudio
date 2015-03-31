@@ -10,3 +10,7 @@ cdo_user_user_redirect:
     resource: "@CdoUserBundle/Controller/User/RedirectController.php"
     type:     annotation
 
+cdo_user_user_changepassword:
+    resource: "@CdoUserBundle/Controller/User/ChangePasswordController.php"
+    type:     annotation
+

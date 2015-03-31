@@ -14,3 +14,13 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+#doctrine:
+#    dbal:
+#        driver:   pdo_mysql
+#        host:     localhost
+#        port:     null
+#        dbname:   cloudiotest
+#        user:     root
+#        password: root
+#        charset:  UTF8

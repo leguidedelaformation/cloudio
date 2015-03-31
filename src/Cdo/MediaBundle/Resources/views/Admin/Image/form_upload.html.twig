@@ -1,13 +1,5 @@
-{% extends "CdoMediaBundle:Admin/Image:form_update.html.twig" %}
+{% extends "CdoSiteBundle:Admin/Form:save.html.twig" %}
 
-{% block form_file %}
-    <div class="row">
-        <div class="col-xs-4 text-right">
-            {{ form_label(form.file) }}
-        </div><!-- /.col-xs-4 -->
-        <div class="col-xs-4">
-            {{ form_widget(form.file) }}
-            {{ form_errors(form.file) }}
-        </div><!-- /.col-xs-4 -->
-    </div><!-- /.row -->
-{% endblock form_file %}
+{% block formfields %}
+    {% include "CdoMediaBundle:Admin/Image:form_fields.html.twig" %}
+{% endblock formfields %}

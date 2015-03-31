@@ -1,0 +1,7 @@
+{% extends "PtmSiteBundle:Visitor:layout.html.twig" %}
+
+{% block content %}
+    <h1>Accès réservé</h1>
+    <p>Vous n'avez pas accès à cette page.</p>
+    <p><a href="{{ path('fos_user_security_login') }}" rel="nofollow">Cliquez ici</a> pour vous connecter avec d'autres identifiants.</p>
+{% endblock content %}

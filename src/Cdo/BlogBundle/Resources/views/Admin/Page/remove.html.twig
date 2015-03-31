@@ -1,6 +1,15 @@
 {% extends "CdoBlogBundle:Admin:layout.html.twig" %}
 
+{% block title %}
+    Supprimer la page &laquo {{ page.title }} &raquo
+{% endblock title %}
+
+{% block heading %}
+    <h1>Supprimer la page &laquo {{ page.title }} &raquo</h1>
+{% endblock heading %}
+
 {% block innercontent %}
+    <br />
     <p class="text-center">Etes-vous certain(e) de vouloir supprimer la page &laquo; <b>{{ page.title }}</b> &raquo; ?</p>
     <p class="text-center">Vous ne pourrez pas revenir sur cette action.</p>
     <br />

@@ -14,19 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 class ParamsController extends Controller
 {
     /**
-     * @Route("/encode", name="cdo_site_admin_params_encode")
-     * @Secure(roles="ROLE_ACCOUNT")
-     */
-    public function encodeAction($subdomain)
-    {
-        $this->container->get('cdo_site.twig.params_extension')->encode($subdomain);
-        
-        return $this->redirect($this->generateUrl('cdo_blog_visitor_page_homepage', array(
-            'subdomain' => $subdomain,
-        )));
-    }
-    
-    /**
      * @Route("/", name="cdo_site_admin_params_index")
      * @Template()
      * @Secure(roles="ROLE_ACCOUNT")

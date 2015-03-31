@@ -12,12 +12,14 @@ class UpdateType extends PageType
     protected $account_id;
     protected $page_id;
     protected $rank_array;
+    protected $page_level_max;
     
-    public function __construct($account_id, $page_id, $rank_array)
+    public function __construct($account_id, $page_id, $rank_array, $page_level_max)
     {
         $this->account_id = $account_id;
         $this->page_id = $page_id;
     	$this->rank_array = $rank_array;
+        $this->page_level_max = $page_level_max;
     }
     
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -25,7 +27,7 @@ class UpdateType extends PageType
         $account_id = $this->account_id;
         $page_id = $this->page_id;
         $rank_array = $this->rank_array;
-    	$cdo_blog_page_level_max = $GLOBALS['kernel']->getContainer()->getParameter('cdo_blog_page_level_max');
+        $page_level_max = $this->page_level_max;
         
         parent::buildForm($builder, $options);
         
@@ -40,9 +42,9 @@ class UpdateType extends PageType
             ))
             ->add('parent', 'entity', array(
                 'class' => 'CdoBlogBundle:Page',
-                'query_builder' => function(PageRepository $pr) use ($account_id, $page_id, $cdo_blog_page_level_max)
+                'query_builder' => function(PageRepository $pr) use ($account_id, $page_id, $page_level_max)
                 {
-                    return $pr->getSuplevelButPageForm($account_id, $page_id, $cdo_blog_page_level_max - 1);
+                    return $pr->getSuplevelButPageForm($account_id, $page_id, $page_level_max - 1);
                 },
                 'property' => 'title',
                 'label' => 'Page parente :',

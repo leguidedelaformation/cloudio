@@ -1,0 +1,49 @@
+<div class="form-group control-label">
+    <div class="col-sm-3">
+        {{ form_label(form.title) }}
+    </div><!-- /.col-sm-3 -->
+    <div class="col-sm-9">
+        {{ form_widget(form.title) }}
+        {{ form_errors(form.title) }}
+    </div><!-- /.col-sm-9 -->
+</div><!-- /.form-group -->
+{% if form.display is defined %}
+    <div class="form-group">
+        <div class="col-sm-3 text-right">
+            {{ form_label(form.display) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.display) }}
+            {{ form_errors(form.display) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+{% endif %}
+{% if form.rank is defined %}
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.rank) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.rank, { 'attr': {'class': 'form-control'} }) }}
+            {{ form_errors(form.rank) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+{% endif %}
+<div class="form-group control-label">
+    <div class="col-sm-3">
+        {{ form_label(form.parent) }}
+    </div><!-- /.col-sm-3 -->
+    <div class="col-sm-9 text-left">
+        {{ form_widget(form.parent, { 'attr': {'class': 'form-control'} }) }}
+        {{ form_errors(form.parent) }}
+    </div><!-- /.col-sm-9 -->
+</div><!-- /.form-group -->
+<div class="form-group control-label">
+    <div class="col-sm-3">
+        {{ form_label(form.content) }}
+    </div><!-- /.col-sm-3 -->
+    <div class="col-sm-9">
+        {{ form_widget(form.content) }}
+        {{ form_errors(form.content) }}
+    </div><!-- /.col-sm-9 -->
+</div><!-- /.form-group -->

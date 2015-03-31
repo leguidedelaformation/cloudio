@@ -9,66 +9,46 @@ use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\Model\UserInterface;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
- * @Route("/admin/profile")
+ * @Route("/admin/changepassword")
  */
-class ProfileController extends BaseController
+class ChangePasswordController extends Controller
 {
     /**
-     * @Route("/show", name="cdo_user_user_profile_show")
+     * @Route("/", name="cdo_user_user_changepassword_changepassword")
      * @Template()
      * @Secure(roles="ROLE_ACCOUNT")
      */
-    public function showAction()
-    {
-        $user = $this->getUser();
-        $subdomain_route = $this->getRequest()->getSession()->get('subdomain');
-        $subdomain_user = $user->getAccount()->getSubdomain();
-        if ($subdomain_route != $subdomain_user) {
-            return $this->redirect($this->generateUrl('ptm_site_visitor_error_accessdenied'));
-        }
-        
-    	return array(
-            'user' => $user,
-    	    'subdomain' => $subdomain_user,
-    	);
-    }
-
-    /**
-     * @Route("/edit", name="cdo_user_user_profile_edit")
-     * @Template()
-     * @Secure(roles="ROLE_ACCOUNT")
-     */
-    public function editAction(Request $request)
+    public function changePasswordAction(Request $request, $subdomain)
     {
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
-            return $this->redirect($this->generateUrl('ptm_site_visitor_error_accessdenied'));
-        }
-        $subdomain_route = $this->getRequest()->getSession()->get('subdomain');
-        $subdomain_user = $user->getAccount()->getSubdomain();
-        if ($subdomain_route != $subdomain_user) {
-            return $this->redirect($this->generateUrl('ptm_site_visitor_error_accessdenied'));
+            throw new AccessDeniedException('This user does not have access to this section.');
         }
 
         /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
         $dispatcher = $this->get('event_dispatcher');
 
         $event = new GetResponseUserEvent($user, $request);
-        $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_INITIALIZE, $event);
+        $dispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_INITIALIZE, $event);
 
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }
 
-        $form = $this->container->get('form.factory')->create('cdo_user_profile', $user);
+        /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
+        $formFactory = $this->get('fos_user.change_password.form.factory');
+
+        $form = $formFactory->createForm();
+        $form->setData($user);
 
         $form->handleRequest($request);
 
@@ -77,18 +57,18 @@ class ProfileController extends BaseController
             $userManager = $this->get('fos_user.user_manager');
 
             $event = new FormEvent($form, $request);
-            $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
+            $dispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_SUCCESS, $event);
 
             $userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
                 $url = $this->generateUrl('cdo_user_user_profile_show', array(
-                    'subdomain' => $user->getAccount()->getSubdomain(),
+                    'subdomain' => $subdomain,
                 ));
                 $response = new RedirectResponse($url);
             }
 
-            $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
+            $dispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
 
             return $response;
         }

@@ -1,3 +1,5 @@
+parameters:
+
 services:
     cdo_user.profile.form.type:
         class: Cdo\UserBundle\Form\Type\ProfileFormType

@@ -2,6 +2,10 @@ ptm_site_admin_fixtures:
     resource: "@PtmSiteBundle/Controller/Admin/FixturesController.php"
     type:     annotation
 
+ptm_site_visitor_error:
+    resource: "@PtmSiteBundle/Controller/Visitor/ErrorController.php"
+    type:     annotation
+
 ptm_site_visitor_site:
     resource: "@PtmSiteBundle/Controller/Visitor/SiteController.php"
     type:     annotation

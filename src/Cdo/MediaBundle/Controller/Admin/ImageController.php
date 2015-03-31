@@ -92,7 +92,7 @@ class ImageController extends Controller
         
         if ($account != $image->getAccount())
         {
-	        throw new AccessDeniedException();
+	        return $this->redirect($this->generateUrl('ptm_site_visitor_error_accessdenied'));
         }
         
         $form = $this->createForm(new UpdateType, $image);
@@ -141,7 +141,7 @@ class ImageController extends Controller
         
         if ($account != $image->getAccount())
         {
-	        throw new AccessDeniedException();
+	        return $this->redirect($this->generateUrl('ptm_site_visitor_error_accessdenied'));
         }
         
         $image_alt = $image->getAlt();

@@ -21,7 +21,6 @@ class CreateType extends PageType
     {
         $account_id = $this->account_id;
         $page_level_max = $this->page_level_max;
-//        $cdo_blog_page_level_max = $GLOBALS['kernel']->getContainer()->getParameter('cdo_blog_page_level_max');
         
         parent::buildForm($builder, $options);
         

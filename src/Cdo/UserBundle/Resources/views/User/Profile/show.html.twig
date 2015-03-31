@@ -23,7 +23,7 @@
 	        {% if user.firstname %}
 	            {{ user.firstname }}
 	        {% else %}
-	            <a href="#">Editer</a>
+	            <a href="{{ path('cdo_user_user_profile_edit', {'subdomain': app.session.get('subdomain')}) }}">Editer</a>
 	        {% endif %}
 	    </div><!-- /.col-sm-9 -->
     </div><!-- /.row -->
@@ -35,7 +35,7 @@
 	        {% if user.phone %}
 	            {{ user.phone }}
 	        {% else %}
-	            <a href="#">Editer</a>
+	            <a href="{{ path('cdo_user_user_profile_edit', {'subdomain': app.session.get('subdomain')}) }}">Editer</a>
 	        {% endif %}
 	    </div><!-- /.col-sm-9 -->
     </div><!-- /.row -->
@@ -47,4 +47,12 @@
 	        {{ user.createdAt|date('d/m/Y - H:i:s') }}
 	    </div><!-- /.col-sm-9 -->
     </div><!-- /.row -->
+    <br />
+    <div class="text-center">
+        <a href="{{ path('cdo_user_user_profile_edit', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg">Editer</a>
+    </div><!-- /.text-center -->
+    <br />
+    <div class="text-center">
+        <a href="{{ path('cdo_user_user_changepassword_changepassword', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg">Changer de mot de passe</a>
+    </div><!-- /.text-center -->
 {% endblock innercontent %}

@@ -1,12 +1,18 @@
 Cdo\UserBundle\Entity\User:
     properties:
-        firstname:
-            - NotBlank: { groups: [firstname] }
         lastname:
-            - NotBlank: { groups: [lastname] }
+            - NotBlank:
+                message: Veuillez saisir votre nom.
+                groups: [lastname]
+        firstname:
+            - NotBlank:
+                message: Veuillez saisir votre prénom.
+                groups: [firstname]
         phone:
             - Regex:
                 pattern: '/^[(]?(0|\+33)[)]?[-. ]?([(][0][)])?[-. ]?[1-9]([-. ]?[0-9]){8}$/'
                 message: Ceci n'est pas un numéro de téléphone valide.
                 groups: [phone]
-            - NotBlank: { groups: [phone] }
+            - NotBlank:
+                message: Veuillez saisir un numéro de téléphone.
+                groups: [phone]

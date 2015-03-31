@@ -1,65 +1,65 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-    <form action="{{ path('fos_user_profile_edit', {'subdomain': app.session.get('subdomain')}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit form-horizontal">
-      {{ form_start(form) }}
-        <div class="form-group control-label">
-          <div class="col-xs-4">
-          {{ form_label(form.username) }}
-          </div><!-- /.col-xs-4 -->
-          <div class="col-xs-6"">
-          {{ form_widget(form.username) }}
-          {{ form_errors(form.username) }}
-          </div><!-- /.col-xs-6 -->
-        </div><!-- /.form-group control-label -->
-        <div class="form-group control-label">
-          <div class="col-xs-4">
-          {{ form_label(form.firstname) }}
-          </div><!-- /.col-xs-4 -->
-          <div class="col-xs-6"">
-          {{ form_widget(form.firstname) }}
-          {{ form_errors(form.firstname) }}
-          </div><!-- /.col-xs-6 -->
-        </div><!-- /.form-group control-label -->
-        <div class="form-group control-label">
-          <div class="col-xs-4">
-          {{ form_label(form.lastname) }}
-          </div><!-- /.col-xs-4 -->
-          <div class="col-xs-6"">
-          {{ form_widget(form.lastname) }}
-          {{ form_errors(form.lastname) }}
-          </div><!-- /.col-xs-6 -->
-        </div><!-- /.form-group control-label -->
-        <div class="form-group control-label">
-          <div class="col-xs-4">
-          {{ form_label(form.email) }}
-          </div><!-- /.col-xs-4 -->
-          <div class="col-xs-6"">
-          {{ form_widget(form.email) }}
-          {{ form_errors(form.email) }}
-          </div><!-- /.col-xs-6 -->
-        </div><!-- /.form-group control-label -->
-        <div class="form-group control-label">
-          <div class="col-xs-4">
-          {{ form_label(form.phone) }}
-          </div><!-- /.col-xs-4 -->
-          <div class="col-xs-6"">
-          {{ form_widget(form.phone) }}
-          {{ form_errors(form.phone) }}
-          </div><!-- /.col-xs-6 -->
-        </div><!-- /.form-group control-label -->
-        <div class="form-group control-label">
-          <div class="col-xs-4">
-          Saisissez votre mot de passe :
-          </div><!-- /.col-xs-4 -->
-          <div class="col-xs-6"">
-          {{ form_widget(form.current_password) }}
-          {{ form_errors(form.current_password) }}
-          </div><!-- /.col-xs-6 -->
-        </div><!-- /.form-group control-label -->
-        <div class="form-group">
-          <div class="text-center">
-            <input type="submit" class="btn btn-primary btn-lg" value="{{ 'profile.edit.submit'|trans }}" />
-          </div><!-- /.text-center -->
-        </div><!-- /.form-group -->
-      {{ form_end(form) }}
-    </form>
+<form action="{{ path('cdo_user_user_profile_edit', {'subdomain': app.session.get('subdomain')}) }}" {{ form_enctype(form) }} method="POST" class="cdo_user_user_profile_edit form-horizontal">
+  {{ form_start(form) }}
+    <div class="form-group control-label">
+      <div class="col-sm-3">
+      {{ form_label(form.username) }}
+      </div><!-- /.col-sm-3 -->
+      <div class="col-sm-9"">
+      {{ form_widget(form.username) }}
+      {{ form_errors(form.username) }}
+      </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group control-label -->
+    <div class="form-group control-label">
+      <div class="col-sm-3">
+      {{ form_label(form.email) }}
+      </div><!-- /.col-sm-3 -->
+      <div class="col-sm-9"">
+      {{ form_widget(form.email) }}
+      {{ form_errors(form.email) }}
+      </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group control-label -->
+    <div class="form-group control-label">
+      <div class="col-sm-3">
+      {{ form_label(form.lastname) }}
+      </div><!-- /.col-sm-3 -->
+      <div class="col-sm-9"">
+      {{ form_widget(form.lastname) }}
+      {{ form_errors(form.lastname) }}
+      </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group control-label -->
+    <div class="form-group control-label">
+      <div class="col-sm-3">
+      {{ form_label(form.firstname) }}
+      </div><!-- /.col-sm-3 -->
+      <div class="col-sm-9"">
+      {{ form_widget(form.firstname) }}
+      {{ form_errors(form.firstname) }}
+      </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group control-label -->
+    <div class="form-group control-label">
+      <div class="col-sm-3">
+      {{ form_label(form.phone) }}
+      </div><!-- /.col-sm-3 -->
+      <div class="col-sm-9"">
+      {{ form_widget(form.phone) }}
+      {{ form_errors(form.phone) }}
+      </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group control-label -->
+    <div class="form-group control-label">
+      <div class="col-sm-3">
+      Saisissez votre mot de passe :
+      </div><!-- /.col-sm-3 -->
+      <div class="col-sm-9"">
+      {{ form_widget(form.current_password) }}
+      {{ form_errors(form.current_password) }}
+      </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group control-label -->
+    <div class="form-group">
+      <div class="text-center">
+        <input type="submit" class="btn btn-primary btn-lg" value="{{ 'profile.edit.submit'|trans }}" />
+      </div><!-- /.text-center -->
+    </div><!-- /.form-group -->
+  {{ form_end(form) }}
+</form>

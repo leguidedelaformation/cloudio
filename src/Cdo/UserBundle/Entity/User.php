@@ -48,7 +48,7 @@ class User extends BaseUser
      *
      * @ORM\Column(type="string", length=255, nullable=true)
      *
-     * @Assert\NotBlank(message="Votre nom :", groups={"Registration", "Profile"})
+     * @Assert\NotBlank(message="Votre nom :", groups={"Profile"})
      * @Assert\Length(
      *     min=2,
      *     max="255",

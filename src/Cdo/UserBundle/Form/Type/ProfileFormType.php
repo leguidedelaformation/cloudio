@@ -13,8 +13,14 @@ class ProfileFormType extends BaseType
     {
         $builder
             ->remove('username')
+            ->remove('email')
             ->add('username', 'text', array(
                 'label' => 'Pseudo :',
+                'disabled' => true,
+            ))
+            ->add('email', 'email', array(
+                'label' => 'form.email',
+                'translation_domain' => 'FOSUserBundle',
                 'disabled' => true,
             ))
             ->add('firstname', 'text', array(

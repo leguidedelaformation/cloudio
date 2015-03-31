@@ -28,19 +28,6 @@ class StylesController extends Controller
     }
     
     /**
-     * @Route("/encode", name="cdo_site_admin_styles_encode")
-     * @Secure(roles="ROLE_ACCOUNT")
-     */
-    public function encodeAction($subdomain)
-    {
-        $this->container->get('cdo_site.twig.styles_extension')->encode($subdomain);
-        
-        return $this->redirect($this->generateUrl('cdo_site_admin_site_dashboard', array(
-            'subdomain' => $subdomain,
-        )));
-    }
-    
-    /**
      * @Route("/generate", name="cdo_site_admin_styles_generate")
      * @Secure(roles="ROLE_ACCOUNT")
      */

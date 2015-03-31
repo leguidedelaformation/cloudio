@@ -88,7 +88,10 @@ fos_user:
     profile:
         form:
             type: cdo_user_profile
-            validation_groups: [ phone, Default]
+            validation_groups: [ lastname, firstname, phone, Default]
+    registration:
+        confirmation:
+            enabled: true
 
 # Stof\DoctrineExtensionBundle configuration
 stof_doctrine_extensions:
