@@ -1,0 +1,11 @@
+{% extends "CdoSiteBundle:Visitor:layout.html.twig" %}
+
+{% block title %}
+    Page non trouvée {{ parent() }}
+{% endblock title %}
+
+{% block container %}
+    <h1>Page non trouvée</h1>
+    <p>La page demandée n'existe pas ou a été retirée.</p>
+    <p><a href="{{ path('cdo_blog_visitor_page_homepage', {'subdomain': app.session.get('subdomain')}) }}" rel="nofollow">Cliquez ici</a> pour revenir à l'accueil.</p>
+{% endblock container %}

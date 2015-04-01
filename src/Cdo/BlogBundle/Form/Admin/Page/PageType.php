@@ -23,6 +23,14 @@ class PageType extends AbstractType
                 ),
                 'required' => false,
             ))
+            ->add('display', 'choice', array(
+                'label' => 'Publier :',
+                'choices' => array(
+                    '1' => 'Oui',
+                    '0' => 'Non',
+                ),
+                'expanded' => true,
+            ))
         ;
     }
 

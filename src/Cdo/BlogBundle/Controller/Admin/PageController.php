@@ -26,8 +26,9 @@ class PageController extends Controller
     public function indexAction($subdomain)
     {
         $em = $this->getDoctrine()->getManager();
+        $account = $this->getUser()->getAccount();
         
-        $page_collection = $this->container->get('cdo_blog.twig.page_extension')->pageListByLevel($subdomain, false)['page_collection'];
+        $page_collection = $this->container->get('cdo_blog.twig.page_extension')->pageListByLevel($subdomain);
         
         return array(
             'page_collection' => $page_collection,
@@ -50,7 +51,7 @@ class PageController extends Controller
         $page_count = $em->getRepository('CdoBlogBundle:Page')
                          ->countAll($account);
         
-        $page = new Page();
+        $page = new Page;
         $page->setAccount($account);
         $page->setRank($page_count);
         
@@ -101,6 +102,7 @@ class PageController extends Controller
     public function updateAction(Page $page, $subdomain)
     {
         $em = $this->getDoctrine()->getManager();
+        $page_rep = $em->getRepository('CdoBlogBundle:Page');
         $securityContext = $this->get('security.context');
         $cdo_blog_page_level_max = $this->container->getParameter('cdo_blog_page_level_max');
         
@@ -109,13 +111,16 @@ class PageController extends Controller
             return $this->redirect($this->generateUrl('ptm_site_visitor_error_accessdenied'));
         }
         
-        $page_count = $em->getRepository('CdoBlogBundle:Page')
-                         ->countAll($account);
+        $page_count = $page_rep->countAll($account);
         
         $rank_array = array();
-        for ($i = 0; $i < $page_count; $i++)
+        $i = $page->getChildren()->isEmpty()
+            ? 0
+            : 1;
+        while ($i < $page_count)
         {
         	$rank_array[] = $i;
+        	$i++;
         }
         
     	$form = $this->createForm(new UpdateType($account->getId(), $page->getId(), $rank_array, $cdo_blog_page_level_max), $page);
@@ -128,6 +133,12 @@ class PageController extends Controller
             
             if($form->isValid())
             {
+                if ($page->getRank() == 0) {
+                	$page_homepage = $page_rep->getByHomepage($account);
+                	$page_homepage->setHomepage(false);
+                	$page->setHomepage(true);
+                }
+                
                 $event = new PagePostEvent($securityContext, $page, $em);
                 $this->get('event_dispatcher')->dispatch(PageEvents::onPagePost, $event);
                 $event->setLevel();

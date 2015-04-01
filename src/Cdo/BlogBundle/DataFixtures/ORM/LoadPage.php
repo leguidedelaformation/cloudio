@@ -38,8 +38,8 @@ class LoadPage extends AbstractFixture implements OrderedFixtureInterface, Conta
                     'rank' => 0,
                     'level' => 0,
                     'title' => 'Page d\'accueil',
-                    'slug' => 'Bienvenue !',
-                    'content' => 'Bienvenue sur le site d\'ABC Formation !',
+                    'slug' => 'page-d-accueil',
+                    'content' => '<p>Bienvenue sur le site d\'ABC Formation !</p><p>Nous vous souhaitons une bonne navigation.</p>',
                     'parent' => null,
                 ),
                 array(

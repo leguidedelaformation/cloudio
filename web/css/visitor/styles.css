@@ -1,70 +1,79 @@
 body {
-	margin: auto;
+	margin:auto;
 }
 //.align-vertical {
-//  float: none;
-//  display: inline-block;
-//  vertical-align: middle;
-//  margin-right: -4px;
+//  float:none;
+//  display:inline-block;
+//  vertical-align:middle;
+//  margin-right:-4px;
 //}
 
 /*~~~ Navbar ~~~*/
 #navbar {
-    border-radius: 0;
-    border: none;
-	font-size: 1.35em;
-	color: #646464;
+    border-radius:0;
+    border:none;
+	font-size:1.35em;
+	color:#646464;
 	margin-bottom:0;
 }
 #navbar .collapse {
-	margin: auto -15px;
+	margin:auto -15px;
 }
 #navbar .navbar-brand {
-    float: none;
+    float:none;
 }
 #navbar .logo img {
-    max-width: 100%;
+    max-width:100%;
 }
 #navbar .navbar-sup {
-    padding-top: 2em;
-    padding-bottom: 1em;
+    padding-top:2em;
+    padding-bottom:1em;
 }
 #navbar .slogan {
-	font-size: 1.45em;
+	font-size:1.45em;
 }
 #navbar .socialbuttons ul {
-    list-style: none;
+    list-style:none;
 }
 #navbar .socialbuttons li {
-    display: inline;
+    display:inline;
 }
 #navbar .nav > li.active > a {
-    background: none;
-    color: inherit;
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    background:none;
+    color:inherit;
+    -webkit-box-shadow:none;
+            box-shadow:none;
 }
 /* For center or right positioning of navbar */
-@media (min-width: 768px) {
+@media (min-width:768px) {
 #navbar .navbar-nav {
-    display: inline-block;
-    float: none;
-    vertical-align: top;
+    display:inline-block;
+    float:none;
+    vertical-align:top;
 }
 /*~~~ Footer ~~~*/
 #footer {
-    padding-top: 1em;
-    background: #f5f5f5;
+    padding-top:1em;
+    background:#f5f5f5;
 }
-/*~~~ Page ~~~*/
-#pagemenu {
-    line-height: 3em;
-    padding-top: 1em;
-    padding-bottom: 1em;
+/*~~~ Page & Post ~~~*/
+#pagemenu,
+#blogmenu {
+    line-height:3em;
+    padding-top:1em;
+    padding-bottom:1em;
 }
-#pagemenu ul {
-    list-style: none;
+#pagemenu ul,
+#blogmenu ul {
+    list-style:none;
 }
-#pagemenu ul > li {
-    font-size: 1.2em;
+#pagemenu ul > li,
+#blogmenu ul > li {
+    font-size:1.2em;
+}
+/*~~~ Post ~~~*/
+.category-title {
+    border:1px solid #C2C2C2;
+    padding:0.3em 0.6em;
+    border-radius:0.5em;
 }

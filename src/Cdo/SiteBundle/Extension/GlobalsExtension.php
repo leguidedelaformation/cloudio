@@ -33,6 +33,7 @@ class GlobalsExtension extends \Twig_Extension
             'cdo_site' => $params_array['site'],
             'cdo_social' => $params_array['social'],
             'cdo_page' => $params_array['page'],
+            'cdo_blog' => $params_array['blog'],
         );
     }
     

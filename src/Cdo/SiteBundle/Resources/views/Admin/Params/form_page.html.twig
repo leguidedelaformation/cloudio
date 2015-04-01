@@ -1,15 +1,13 @@
 {% extends "CdoSiteBundle:Admin/Form:update.html.twig" %}
 
-{% form_theme form 'CdoSiteBundle:Form:radio_margin.html.twig' %}
-
 {% block formfields %}
     <div class="form-group control-label">
         <div class="col-sm-3">
-            {{ form_label(form.page_sidemenu) }}
+            {{ form_label(form.page_placement) }}
         </div><!-- /.col-sm-3 -->
         <div class="col-sm-9 text-left">
-            {{ form_widget(form.page_sidemenu) }}
-            {{ form_errors(form.page_sidemenu) }}
+            {{ form_widget(form.page_placement, { 'attr': {'class': 'form-control'} }) }}
+            {{ form_errors(form.page_placement) }}
         </div><!-- /.col-sm-9 -->
     </div><!-- /.form-group -->
 {% endblock formfields %}

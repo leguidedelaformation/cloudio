@@ -1,0 +1,66 @@
+<div class="form-group control-label">
+    <div class="col-sm-3">
+        {{ form_label(form.title) }}
+    </div><!-- /.col-sm-3 -->
+    <div class="col-sm-9">
+        {{ form_widget(form.title) }}
+        {{ form_errors(form.title) }}
+    </div><!-- /.col-sm-9 -->
+</div><!-- /.form-group -->
+<div class="form-group control-label">
+    <div class="col-sm-3">
+        {{ form_label(form.content) }}
+    </div><!-- /.col-sm-3 -->
+    <div class="col-sm-9">
+        {{ form_widget(form.content) }}
+        {{ form_errors(form.content) }}
+    </div><!-- /.col-sm-9 -->
+</div><!-- /.form-group -->
+<div class="form-group control-label">
+    <div class="col-sm-3">
+        {{ form_label(form.categorys) }}
+    </div><!-- /.col-sm-3 -->
+    <div class="col-sm-9 text-left">
+        {{ form_widget(form.categorys) }}
+        {{ form_errors(form.categorys) }}
+    </div><!-- /.col-sm-9 -->
+</div><!-- /.form-group -->
+<div class="form-group">
+    <div class="col-sm-3 text-right">
+        {{ form_label(form.display) }}
+    </div><!-- /.col-sm-3 -->
+    <div class="col-sm-9">
+        {{ form_widget(form.display) }}
+        {{ form_errors(form.display) }}
+    </div><!-- /.col-sm-9 -->
+</div><!-- /.form-group -->
+<div class="form-group">
+    <div class="col-sm-3 text-right">
+        {{ form_label(form.releasedate) }}
+    </div><!-- /.col-sm-3 -->
+    <div class="col-sm-9">
+        {{ form_widget(form.releasedate) }}
+        {{ form_errors(form.releasedate) }}
+    </div><!-- /.col-sm-9 -->
+</div><!-- /.form-group -->
+<div class="row">
+    <div class="col-sm-3 text-right">
+        Auteur :
+    </div><!-- /.col-sm-3 -->
+    <div class="col-sm-9">
+        {% if user.firstname and user.lastname %}
+            {{ user.firstname }} {{ user.lastname }}
+        {% else %}
+            {{ user.username }}
+        {% endif %}
+    </div><!-- /.col-sm-9 -->
+</div><!-- /.row -->
+<div class="form-group">
+    <div class="col-sm-3 text-right">
+        {{ form_label(form.author) }}
+    </div><!-- /.col-sm-3 -->
+    <div class="col-sm-9">
+        {{ form_widget(form.author) }}
+        {{ form_errors(form.author) }}
+    </div><!-- /.col-sm-9 -->
+</div><!-- /.form-group -->

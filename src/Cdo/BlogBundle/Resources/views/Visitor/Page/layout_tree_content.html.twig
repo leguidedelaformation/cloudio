@@ -1,0 +1,26 @@
+{% extends "CdoBlogBundle:Visitor/Page:layout.html.twig" %}
+
+{% block container %}
+	<div class="row">
+	    <div class="col-xs-3" id="pagemenu">
+	        <ul>
+		        {% for child_0 in page_root.children %}
+                    {% if child_0.display %}
+                        <li><a href="{{ path('cdo_blog_visitor_page_show', {'slug': child_0.slug, 'subdomain': app.session.get('subdomain')}) }}">{{ child_0.title }} <span class="sr-only">{{ child_0.title }}</span></a></li>
+                        <ul>
+                        {% for child_1 in child_0.children %}
+                            {% if child_1.display %}
+                                <li><a href="{{ path('cdo_blog_visitor_page_show', {'slug': child_1.slug, 'subdomain': app.session.get('subdomain')}) }}">{{ child_1.title }} <span class="sr-only">{{ child_1.title }}</span></a></li>
+                            {% endif %}
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+		        {% endfor %}
+	        </ul>
+	    </div><!--  /.col-xs-3 -->
+	    <div class="col-xs-9" id="pagecontent">
+            {% block page_content %}
+            {% endblock page_content %}
+        </div><!--  /.col-xs-9 -->
+    </div><!--  /.row -->
+{% endblock container %}

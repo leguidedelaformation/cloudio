@@ -1,0 +1,69 @@
+{% extends "CdoBlogBundle:Admin/Blog:layout.html.twig" %}
+
+{% block title %}
+    Articles {{ parent() }}
+{% endblock title %}
+
+{% block heading %}
+    <h1>Articles</h1>
+{% endblock heading %}
+
+{% block addbutton %}
+    <a href="{{ path('cdo_blog_admin_post_create', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg" aria-label="Ajouter">Ajouter</a>
+{% endblock addbutton %}
+
+{% block innercontent %}
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th class="text-center">Statut</th>
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Catégories</th>
+                    <th class="text-center">Commentaires</th>
+                    <th class="text-center">Editer</th>
+                    <th class="text-center">Supprimer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in post_collection %}
+                    <tr>
+                        <td>
+                            {% if post.display %}
+                                <a href="{{ path('cdo_blog_visitor_post_show', {'slug': post.slug, 'subdomain': app.session.get('subdomain')}) }}" rel="tooltip" data-original-title="Voir" target="_blank">
+                                    {{ post.title }} <span class="sr-only">{{ post.title }}</span>
+                                </a>
+                            {% else %}
+                                {{ post.title }} <span class="sr-only">{{ post.title }}</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            {% if post.display %}Publié{% else %}Dépublié{% endif %}
+                        </td>
+                        <td class="text-center">
+                            {{ post.releasedate|date('d/m/Y H:i:s') }}
+                        </td>
+                        <td class="text-center">
+                            {% for category in post.categorys %}
+                                {{ category.title }}
+                                {% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td class="text-center"></td>
+                        <td class="text-center">
+                            <a href="{{ path('cdo_blog_admin_post_update', {'post': post.id, 'subdomain': app.session.get('subdomain')}) }}" aria-label="Editer" rel="tooltip" data-original-title="Editer">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ path('cdo_blog_admin_post_remove', {'post': post.id, 'subdomain': app.session.get('subdomain')}) }}" aria-label="Supprimer" rel="tooltip" data-original-title="Supprimer">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock innercontent %}

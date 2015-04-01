@@ -1,10 +1,14 @@
-{% extends "CdoBlogBundle:Visitor/Page:show.html.twig" %}
+{% extends "CdoBlogBundle:Visitor/Page:layout.html.twig" %}
 
 {% block container %}
 	<div class="row">
-	    <div class="col-xs-3 {% if cdo_page_sidemenu == 'right' %}col-xs-push-9{% endif %}" id="pagemenu">
+	    <div class="col-xs-9" id="pagecontent">
+            {% block page_content %}
+            {% endblock page_content %}
+        </div><!--  /.col-xs-9 -->
+	    <div class="col-xs-3" id="pagemenu">
 	        <ul>
-		        {% for child_0 in tab_active.children %}
+		        {% for child_0 in page_root.children %}
                     {% if child_0.display %}
                         <li><a href="{{ path('cdo_blog_visitor_page_show', {'slug': child_0.slug, 'subdomain': app.session.get('subdomain')}) }}">{{ child_0.title }} <span class="sr-only">{{ child_0.title }}</span></a></li>
                         <ul>
@@ -18,9 +22,5 @@
 		        {% endfor %}
 	        </ul>
 	    </div><!--  /.col-xs-3 -->
-	    <div class="col-xs-9 {% if cdo_page_sidemenu == 'right' %}col-xs-pull-3{% endif %}" id="pagecontent">
-		    <h1>{{ page.title }}</h1>
-		    <p>{{ page.content|raw }}</p>
-	    </div><!--  /.col-xs-9 -->
     </div><!--  /.row -->
 {% endblock container %}

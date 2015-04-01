@@ -65,6 +65,11 @@ class User extends BaseUser
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $phone;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Cdo\BlogBundle\Entity\Post", mappedBy="user")
+     */
+    private $posts;
 
 
     /**
@@ -168,6 +173,39 @@ class User extends BaseUser
     {
         return $this->phone;
     }
+
+    /**
+     * Add post
+     *
+     * @param \Cdo\BlogBundle\Entity\Post $post
+     * @return User
+     */
+    public function addPost(\Cdo\BlogBundle\Entity\Post $post)
+    {
+        $this->posts[] = $post;
+
+        return $this;
+    }
+
+    /**
+     * Remove post
+     *
+     * @param \Cdo\BlogBundle\Entity\Post $post
+     */
+    public function removePost(\Cdo\BlogBundle\Entity\Post $post)
+    {
+        $this->posts->removeElement($post);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
     
     
     /**
@@ -177,5 +215,6 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->roles = array('ROLE_USER');
+        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 }

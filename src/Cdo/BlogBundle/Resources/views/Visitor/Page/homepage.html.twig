@@ -1,11 +1,11 @@
-{% extends "CdoBlogBundle:Visitor:layout.html.twig" %}
+{% extends "CdoSiteBundle:Visitor:layout.html.twig" %}
 
 {% block title %}
     {{ cdo_site['title'] }}
 {% endblock title %}
 
 {% block header %}
-    {{ render(controller('CdoSiteBundle:Visitor/Site:navbarPage', {'tab_active': tab_active, 'subdomain': app.session.get('subdomain')})) }}
+    {{ render(controller('CdoSiteBundle:Visitor/Site:navbar', {'tab_active': tab_active, 'subdomain': app.session.get('subdomain')})) }}
 {% endblock header %}
 
 {% block container %}

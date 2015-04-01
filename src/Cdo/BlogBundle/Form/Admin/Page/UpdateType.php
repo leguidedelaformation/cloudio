@@ -32,14 +32,6 @@ class UpdateType extends PageType
         parent::buildForm($builder, $options);
         
         $builder
-            ->add('display', 'choice', array(
-                'label' => 'Publier :',
-                'choices' => array(
-                    '1' => 'Oui',
-                    '0' => 'Non',
-                ),
-                'expanded' => true,
-            ))
             ->add('parent', 'entity', array(
                 'class' => 'CdoBlogBundle:Page',
                 'query_builder' => function(PageRepository $pr) use ($account_id, $page_id, $page_level_max)

@@ -20,12 +20,14 @@ class PageController extends Controller
         $page = $em->getRepository('CdoBlogBundle:Page')
                    ->getByHomepage($account);
         if (!$page) {
-            throw $this->createNotFoundException('Cette page n\'existe pas');
+            return $this->redirect($this->generateUrl('cdo_site_visitor_error_notfound', array(
+                'subdomain' => $subdomain,
+            )));
         }
         
         return array(
             'page' => $page,
-            'tab_active' => $page,
+            'tab_active' => $page->getTitle(),
         );
     }
     
@@ -37,12 +39,14 @@ class PageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $account = $em->getRepository('CdoAccountBundle:Account')->findSubdomain($subdomain);
-    	$cdo_page_sidemenu = $this->container->get('cdo_site.twig.globals_extension')->getGlobals()['cdo_page']['sidemenu'];
+    	$placement = $this->container->get('cdo_site.twig.globals_extension')->getGlobals()['cdo_page']['placement'];
         
         $page = $em->getRepository('CdoBlogBundle:Page')
-                   ->getBySlug($account, $slug);
+                   ->getBySlugDisplay($account, $slug);
         if (!$page) {
-            throw $this->createNotFoundException('Cette page n\'existe pas');
+            return $this->redirect($this->generateUrl('cdo_site_visitor_error_notfound', array(
+                'subdomain' => $subdomain,
+            )));
         }
         if ($page->getHomepage()) {
             return $this->redirect($this->generateUrl('cdo_blog_visitor_page_homepage', array(
@@ -50,34 +54,26 @@ class PageController extends Controller
             )));
         }
         
-        $display_tree = false;
         $page_root = $page;
-        if ($cdo_page_sidemenu != 'none') {
+        if (strpos($placement,'_tree') !== false) {
             if ($page->getParent()) {
                 $page_root = $page->getParent();
                 if ($page_root->getParent()) {
                     $page_root = $page_root->getParent();
                 }
-                $display_tree = true;
             } else {
                 $page_collection = $em->getRepository('CdoBlogBundle:Page')
                                       ->hasChildrenDisplay($page);
-                if ($page_collection) {
-                    $display_tree = true;
+                if (!$page_collection) {
+                    $placement = str_replace('_tree', '', $placement);
                 }
             }
         }
         
-        $args = array(
+        return array(
             'page' => $page,
-            'tab_active' => $page_root,
-            'cdo_page_sidemenu' => $cdo_page_sidemenu,
+            'page_root' => $page_root,
+            'placement' => $placement,
         );
-        
-        if ($display_tree) {
-            return $this->render('CdoBlogBundle:Visitor/Page:show_tree.html.twig', $args);
-        } else {
-            return $args;
-        }
     }
 }

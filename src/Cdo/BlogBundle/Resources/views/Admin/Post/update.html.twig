@@ -1,0 +1,13 @@
+{% extends "CdoBlogBundle:Admin/Blog:layout.html.twig" %}
+
+{% block title %}
+    Editer l'article &laquo {{ post.title }} &raquo
+{% endblock title %}
+
+{% block heading %}
+    <h1>Editer l'article &laquo {{ post.title }} &raquo</h1>
+{% endblock heading %}
+
+{% block innercontent %}
+    {% include "CdoBlogBundle:Admin/Post:form_update.html.twig" %}
+{% endblock innercontent %}

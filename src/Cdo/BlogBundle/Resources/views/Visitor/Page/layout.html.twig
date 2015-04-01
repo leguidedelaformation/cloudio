@@ -1,0 +1,9 @@
+{% extends "CdoSiteBundle:Visitor:layout.html.twig" %}
+
+{% block title %}
+    {{ page.title }} {{ parent() }}
+{% endblock title %}
+
+{% block header %}
+    {{ render(controller('CdoSiteBundle:Visitor/Site:navbar', {'tab_active': page_root.title, 'subdomain': app.session.get('subdomain')})) }}
+{% endblock header %}

@@ -1,0 +1,14 @@
+{% extends "CdoBlogBundle:Visitor/Blog:layout" ~ cdo_blog['placement'] ~ ".html.twig" %}
+
+{% block title %}
+    {{ cdo_blog['title'] }} {{ parent() }}
+{% endblock title %}
+
+{% block post_content %}
+        <h1>{{ cdo_blog['title'] }}</h1>
+        {% for post in post_collection %}
+	        <h2><a href="{{ path('cdo_blog_visitor_post_show', {'slug': post.slug, 'subdomain': app.session.get('subdomain')}) }}">{{ post.title }}</a></h1>
+	        <p>{{ post.content|raw }}</p>
+	        <p>{{ post.releasedate|date('d/m/Y') }}</p>
+        {% endfor %}
+{% endblock post_content %}

@@ -9,7 +9,7 @@
 {% endblock stylesheets %}
 
 {% block header %}
-    {{ render(controller('CdoSiteBundle:Visitor/Site:navbar', {'subdomain': app.session.get('subdomain')})) }}
+    {{ render(controller('CdoSiteBundle:Visitor/Site:navbar', {'tab_active': null, 'subdomain': app.session.get('subdomain')})) }}
 {% endblock header %}
 
 {% block footer %}

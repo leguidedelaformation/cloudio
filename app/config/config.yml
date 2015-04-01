@@ -134,3 +134,13 @@ stfalcon_tinymce:
              convert_urls: false
              height : "480"
              menubar: false
+
+services:
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension }
+    twig.extension.intl:
+       class: Twig_Extensions_Extension_Intl
+       tags:
+           - { name: twig.extension }

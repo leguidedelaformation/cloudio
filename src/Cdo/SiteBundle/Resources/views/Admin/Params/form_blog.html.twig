@@ -1,0 +1,24 @@
+{% extends "CdoSiteBundle:Admin/Form:update.html.twig" %}
+
+{% form_theme form 'CdoSiteBundle:Form:radio_margin.html.twig' %}
+
+{% block formfields %}
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.blog_title) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9 text-left">
+            {{ form_widget(form.blog_title) }}
+            {{ form_errors(form.blog_title) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.blog_placement) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9 text-left">
+            {{ form_widget(form.blog_placement, { 'attr': {'class': 'form-control'} }) }}
+            {{ form_errors(form.blog_placement) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+{% endblock formfields %}

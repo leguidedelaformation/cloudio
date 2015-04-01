@@ -7,7 +7,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class SiteController extends Controller
 {
-    public function content($subdomain)
+    /**
+     * @Template()
+     */
+    public function navbarAction($tab_active, $subdomain)
     {
         $em = $this->getDoctrine()->getManager();
         $account = $em->getRepository('CdoAccountBundle:Account')->findSubdomain($subdomain);
@@ -20,25 +23,7 @@ class SiteController extends Controller
         return array(
             'navbarlogo' => $navbarlogo,
             'link_array' => $link_array,
-        );
-    }
-    
-    /**
-     * @Template()
-     */
-    public function navbarAction($subdomain)
-    {
-        return self::content($subdomain);
-    }
-    
-    public function navbarPageAction($tab_active, $subdomain)
-    {
-        $navbar_data = self::content($subdomain);
-        
-        return $this->render('CdoSiteBundle:Visitor/Site:navbar.html.twig', array(
-            'navbarlogo' => $navbar_data['navbarlogo'],
-            'link_array' => $navbar_data['link_array'],
             'tab_active' => $tab_active,
-        ));
+        );
     }
 }

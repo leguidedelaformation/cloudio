@@ -1,0 +1,13 @@
+{% extends 'CdoSiteBundle:Form:base.html.twig' %}
+
+{% block radio_widget %}
+    {% spaceless %}
+        <input type="radio" style="margin:0 10px 0 20px" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}/>
+    {% endspaceless %}
+{% endblock radio_widget %}
+
+{% block checkbox_widget %}
+    {% spaceless %}
+        <input type="checkbox" style="margin:0 10px 0 20px" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}/>
+    {% endspaceless %}
+{% endblock checkbox_widget %}

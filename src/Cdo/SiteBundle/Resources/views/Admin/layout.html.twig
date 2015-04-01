@@ -16,6 +16,9 @@
             <div class="col-xs-2" id="test2">
                 <div id="sidemenu">
                     <div class="menu-item-0"><a href="{{ path('cdo_blog_admin_page_index', {'subdomain': app.session.get('subdomain')}) }}">Pages</a></div>
+                    <div class="menu-item-0"><a href="{{ path('cdo_blog_admin_blog_index', {'subdomain': app.session.get('subdomain')}) }}">Blog</a></div>
+                    {% block sidemenu_blog %}
+                    {% endblock sidemenu_blog %}
                     <div class="menu-item-0"><a href="{{ path('cdo_site_admin_params_index', {'subdomain': app.session.get('subdomain')}) }}">Paramètres</a></div>
                     {% block sidemenu_params %}
                     {% endblock sidemenu_params %}

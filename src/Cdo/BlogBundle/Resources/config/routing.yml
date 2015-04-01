@@ -2,7 +2,31 @@ cdo_blog_admin_page:
     resource: "@CdoBlogBundle/Controller/Admin/PageController.php"
     type:     annotation
 
+cdo_blog_admin_blog:
+    resource: "@CdoBlogBundle/Controller/Admin/BlogController.php"
+    type:     annotation
+
+cdo_blog_admin_post:
+    resource: "@CdoBlogBundle/Controller/Admin/PostController.php"
+    type:     annotation
+
+cdo_blog_admin_category:
+    resource: "@CdoBlogBundle/Controller/Admin/CategoryController.php"
+    type:     annotation
+
 cdo_blog_visitor_page:
     resource: "@CdoBlogBundle/Controller/Visitor/PageController.php"
+    type:     annotation
+
+cdo_blog_visitor_blog:
+    resource: "@CdoBlogBundle/Controller/Visitor/BlogController.php"
+    type:     annotation
+
+cdo_blog_visitor_post:
+    resource: "@CdoBlogBundle/Controller/Visitor/PostController.php"
+    type:     annotation
+
+cdo_blog_visitor_category:
+    resource: "@CdoBlogBundle/Controller/Visitor/CategoryController.php"
     type:     annotation
 

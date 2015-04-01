@@ -1,8 +1,3 @@
-{% set link_active = null %}
-{% if tab_active is defined %}
-    {% set link_active = tab_active.title %}
-{% endif %}
-
 <nav class="navbar navbar-default" id="navbar">
     <div class="container-fluid">
         <div id="navbar-top">
@@ -54,11 +49,11 @@
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
                 {% for link in link_array %}
-                    {% if link['entity'] == 'page' %}
+                    {% if link['type'] == 'page' %}
                         {% if link['children'] is empty %}
-                            <li {% if link.title == link_active %}class="active"{% endif %}><a href="{{ path('cdo_blog_visitor_page_show', {'slug': link.slug, 'subdomain': app.session.get('subdomain')}) }}">{{ link.title }} <span class="sr-only">{{ link.title }}</span></a></li>
+                            <li {% if link.title == tab_active %}class="active"{% endif %}><a href="{{ path('cdo_blog_visitor_page_show', {'slug': link.slug, 'subdomain': app.session.get('subdomain')}) }}">{{ link.title }} <span class="sr-only">{{ link.title }}</span></a></li>
                         {% else %}
-                            <li class="dropdown {% if link.title == link_active %}active{% endif %}">
+                            <li class="dropdown {% if link.title == tab_active %}active{% endif %}">
                                 <a href="{{ path('cdo_blog_visitor_page_show', {'slug': link.slug, 'subdomain': app.session.get('subdomain')}) }}" class="dropdown-toggle" aria-expanded="false">{{ link.title }} <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     {% for child_0 in link['children'] %}
@@ -78,6 +73,8 @@
                                 </ul>
                             </li>
                         {% endif %}
+                    {% elseif link['type'] == 'blog' %}
+                        <li {% if link.title == tab_active %}class="active"{% endif %}><a href="{{ path('cdo_blog_visitor_post_index', {'subdomain': app.session.get('subdomain')}) }}">{{ cdo_blog['title'] }} <span class="sr-only">{{ cdo_blog['title'] }}</span></a></li>
                     {% endif %}
                 {% endfor %}
             </ul>

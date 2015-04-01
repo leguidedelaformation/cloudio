@@ -62,14 +62,22 @@ class PagePostEvent extends Event
     {
         $page = $this->page;
         $em = $this->entityManager;
+        $page_rep = $em->getRepository('CdoBlogBundle:Page');
         
         $account = $page->getAccount();
-        $slug = $page->getSlug();
+        $slug_init = $page->getSlug();
         
-        $page_slug = $em->getRepository('CdoBlogBundle:Page')
-                        ->countSlug($account, $slug);
+        $page_slug = $page_rep->countSlug($account, $slug_init);
         if ($page_slug > 1) {
-        	$page->setSlug($slug.'-'.rand(100, 999));
+        	$loop = true;
+        	$i = 0;
+        	while ($loop == true) {
+                $i++;
+                $slug = $slug_init.'-'.$i;
+                $page_slug = $page_rep->countSlug($account, $slug);
+                $loop = ($page_slug > 0);
+        	}
+        	$page->setSlug($slug);
         	$em->flush();
         }
         

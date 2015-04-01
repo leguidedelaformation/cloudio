@@ -18,3 +18,7 @@ cdo_site_visitor_site:
     resource: "@CdoSiteBundle/Controller/Visitor/SiteController.php"
     type:     annotation
 
+cdo_site_visitor_error:
+    resource: "@CdoSiteBundle/Controller/Visitor/ErrorController.php"
+    type:     annotation
+

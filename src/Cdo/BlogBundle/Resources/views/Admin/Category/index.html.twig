@@ -1,0 +1,56 @@
+{% extends "CdoBlogBundle:Admin/Blog:layout.html.twig" %}
+
+{% block title %}
+    Catégories {{ parent() }}
+{% endblock title %}
+
+{% block heading %}
+    <h1>Catégories</h1>
+{% endblock heading %}
+
+{% block addbutton %}
+    <a href="{{ path('cdo_blog_admin_category_create', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg" aria-label="Ajouter">Ajouter</a>
+{% endblock addbutton %}
+
+{% block innercontent %}
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th class="text-center">Statut</th>
+                    <th class="text-center">Editer</th>
+                    <th class="text-center">Supprimer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in category_collection %}
+                    <tr>
+                        <td>
+                            {% if category.display %}
+                                <a href="{{ path('cdo_blog_visitor_category_index', {'slug': category.slug, 'subdomain': app.session.get('subdomain')}) }}" rel="tooltip" data-original-title="Voir" target="_blank">
+                                    {{ category.title }} <span class="sr-only">{{ category.title }}</span>
+                                </a>
+                            {% else %}
+                                {{ category.title }} <span class="sr-only">{{ category.title }}</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            {% if category.display %}Publié{% else %}Dépublié{% endif %}
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ path('cdo_blog_admin_category_update', {'category': category.id, 'subdomain': app.session.get('subdomain')}) }}" aria-label="Editer" rel="tooltip" data-original-title="Editer">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ path('cdo_blog_admin_category_remove', {'category': category.id, 'subdomain': app.session.get('subdomain')}) }}" aria-label="Supprimer" rel="tooltip" data-original-title="Supprimer">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock innercontent %}

@@ -1,0 +1,5 @@
+{% extends "CdoSiteBundle:Visitor:layout.html.twig" %}
+
+{% block header %}
+    {{ render(controller('CdoSiteBundle:Visitor/Site:navbar', {'tab_active': cdo_blog['title'], 'subdomain': app.session.get('subdomain')})) }}
+{% endblock header %}

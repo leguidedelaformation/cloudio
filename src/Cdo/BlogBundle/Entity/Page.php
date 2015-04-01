@@ -13,10 +13,10 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  * @ORM\Entity(repositoryClass="Cdo\BlogBundle\Entity\PageRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt")
  */
-class Page implements ORMBehaviors\Tree\NodeInterface, \ArrayAccess
+class Page
 {
-	use ORMBehaviors\Tree\Node,
-        ORMBehaviors\Timestampable\Timestampable,
+	use Traits\ContentTrait,
+	    ORMBehaviors\Timestampable\Timestampable,
         ORMBehaviors\SoftDeletable\SoftDeletable
     ;
     
@@ -49,31 +49,10 @@ class Page implements ORMBehaviors\Tree\NodeInterface, \ArrayAccess
     private $level;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=255)
-     */
-    private $title;
-
-    /**
      * @Gedmo\Slug(fields={"title"}, updatable=true, unique=false)
-     * @ORM\Column(length=128, unique=false)
+     * @ORM\Column(name="slug", type="string", length=128, unique=false)
      */
     private $slug;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="content", type="text", nullable=true)
-     */
-    private $content;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="display", type="boolean")
-     */
-    private $display;
 
     /**
      * @var boolean
@@ -173,29 +152,6 @@ class Page implements ORMBehaviors\Tree\NodeInterface, \ArrayAccess
     }
 
     /**
-     * Set title
-     *
-     * @param string $title
-     * @return Page
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string 
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
      * Set slug
      *
      * @param string $slug
@@ -216,52 +172,6 @@ class Page implements ORMBehaviors\Tree\NodeInterface, \ArrayAccess
     public function getSlug()
     {
         return $this->slug;
-    }
-
-    /**
-     * Set content
-     *
-     * @param string $content
-     * @return Page
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-    
-        return $this;
-    }
-
-    /**
-     * Get content
-     *
-     * @return string 
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * Set display
-     *
-     * @param boolean $display
-     * @return Page
-     */
-    public function setDisplay($display)
-    {
-        $this->display = $display;
-    
-        return $this;
-    }
-
-    /**
-     * Get display
-     *
-     * @return boolean 
-     */
-    public function getDisplay()
-    {
-        return $this->display;
     }
 
     /**

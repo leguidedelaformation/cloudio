@@ -1,0 +1,6 @@
+{% extends "CdoBlogBundle:Admin:layout.html.twig" %}
+
+{% block sidemenu_blog %}
+    <div class="menu-item-1"><a href="{{ path('cdo_blog_admin_post_index', {'subdomain': app.session.get('subdomain')}) }}">Articles</a></div>
+    <div class="menu-item-1"><a href="{{ path('cdo_blog_admin_category_index', {'subdomain': app.session.get('subdomain')}) }}">Catégories</a></div>
+{% endblock sidemenu_blog %}

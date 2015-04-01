@@ -1,0 +1,16 @@
+{% extends "CdoBlogBundle:Admin/Blog:layout.html.twig" %}
+
+{% block title %}
+    Blog {{ parent() }}
+{% endblock title %}
+
+{% block heading %}
+    <h1>Blog</h1>
+{% endblock heading %}
+
+{% block innercontent %}
+    <div class="text-center">
+        <p><a href="{{ path('cdo_blog_admin_post_index', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg">Articles</a></p>
+        <p><a href="{{ path('cdo_blog_admin_category_index', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg">Catégories</a></p>
+    </div><!-- /.text-center -->
+{% endblock innercontent %}

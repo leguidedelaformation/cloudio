@@ -53,6 +53,16 @@ class Account
      * @ORM\OneToMany(targetEntity="Cdo\BlogBundle\Entity\Page", mappedBy="account")
      */
     private $pages;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Cdo\BlogBundle\Entity\Post", mappedBy="account")
+     */
+    private $posts;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Cdo\BlogBundle\Entity\Category", mappedBy="account")
+     */
+    private $categorys;
 
 
     /**
@@ -176,6 +186,72 @@ class Account
     {
         return $this->pages;
     }
+
+    /**
+     * Add post
+     *
+     * @param \Cdo\BlogBundle\Entity\Post $post
+     * @return Account
+     */
+    public function addPost(\Cdo\BlogBundle\Entity\Post $post)
+    {
+        $this->posts[] = $post;
+
+        return $this;
+    }
+
+    /**
+     * Remove post
+     *
+     * @param \Cdo\BlogBundle\Entity\Post $post
+     */
+    public function removePost(\Cdo\BlogBundle\Entity\Post $post)
+    {
+        $this->posts->removeElement($post);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
+    /**
+     * Add category
+     *
+     * @param \Cdo\BlogBundle\Entity\Category $category
+     * @return Account
+     */
+    public function addCategory(\Cdo\BlogBundle\Entity\Category $category)
+    {
+        $this->categorys[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \Cdo\BlogBundle\Entity\Category $category
+     */
+    public function removeCategory(\Cdo\BlogBundle\Entity\Category $category)
+    {
+        $this->categorys->removeElement($category);
+    }
+
+    /**
+     * Get categorys
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategorys()
+    {
+        return $this->categorys;
+    }
     
     
     /**
@@ -185,5 +261,7 @@ class Account
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->pages = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categorys = new \Doctrine\Common\Collections\ArrayCollection();
     }
 }

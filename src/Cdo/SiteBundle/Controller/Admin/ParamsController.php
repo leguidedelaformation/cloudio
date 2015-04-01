@@ -163,19 +163,18 @@ class ParamsController extends Controller
         $params_array = json_decode(file_get_contents($params_path), true);
         
         $fields_array = array(
-            'page_sidemenu' => $params_array['page']['sidemenu'],
+            'page_placement' => $params_array['page']['placement'],
         );
-        $sidemenu_array = array(
-            'left' => 'gauche',
-            'right' => 'droite',
-            'none' => 'aucun',
+        $placement_array = array(
+            '_content' => '1 bloc: Contenu',
+            '_tree_content' => '2 blocs: Menu à gauche - Contenu à droite',
+            '_content_tree' => '2 blocs: Contenu à gauche - Menu à droite',
         );
         
         $form = $this->createFormBuilder($fields_array)
-                     ->add('page_sidemenu', 'choice', array(
-                         'choices' => $sidemenu_array,
-                         'label' => 'Position du menu latéral',
-                         'expanded' => true,
+                     ->add('page_placement', 'choice', array(
+                         'choices' => $placement_array,
+                         'label' => 'Disposition',
                      ))
                      ->getForm();
         
@@ -184,7 +183,63 @@ class ParamsController extends Controller
 
             $data = $form->getData();
             
-            $params_array['page']['sidemenu'] = $data['page_sidemenu'];
+            $params_array['page']['placement'] = $data['page_placement'];
+            $params_encoded = json_encode($params_array, JSON_PRETTY_PRINT);
+            $params_file = fopen($params_path, 'w') or die("Unable to open file!");
+            fwrite($params_file, $params_encoded);
+            fclose($params_file);
+                
+            $this->get('session')->getFlashBag()->add('success', 'Les paramètres ont été mis à jour.');
+            
+            return $this->redirect($this->generateUrl('cdo_site_admin_params_index', array(
+                'subdomain' => $subdomain,
+            )));
+        }        
+
+        return array(
+            'form' => $form->createView(),
+        );
+    }
+    
+    /**
+     * @Route("/blog", name="cdo_site_admin_params_blog")
+     * @Template()
+     * @Secure(roles="ROLE_ACCOUNT")
+     */
+    public function blogAction(Request $request, $subdomain)
+    {
+        $params_path = $this->container->get('kernel')->getRootDir().'/../custom/'.$subdomain.'/params.json';
+        
+        $params_array = json_decode(file_get_contents($params_path), true);
+        
+        $fields_array = array(
+            'blog_title' => $params_array['blog']['title'],
+            'blog_placement' => $params_array['blog']['placement'],
+        );
+        $placement_array = array(
+            '_content' => '1 bloc: Contenu',
+            '_tree_content' => '2 blocs: Menu à gauche - Contenu à droite',
+            '_content_tree' => '2 blocs: Contenu à gauche - Menu à droite',
+        );
+        
+        $form = $this->createFormBuilder($fields_array)
+                     ->add('blog_title', 'text', array(
+                         'label' => 'Titre du blog',
+                         'required' => false,
+                     ))
+                     ->add('blog_placement', 'choice', array(
+                         'choices' => $placement_array,
+                         'label' => 'Disposition',
+                     ))
+                     ->getForm();
+        
+        if ($request->isMethod('POST')) {
+            $form->bind($request);
+
+            $data = $form->getData();
+            
+            $params_array['blog']['title'] = $data['blog_title'];
+            $params_array['blog']['placement'] = $data['blog_placement'];
             $params_encoded = json_encode($params_array, JSON_PRETTY_PRINT);
             $params_file = fopen($params_path, 'w') or die("Unable to open file!");
             fwrite($params_file, $params_encoded);

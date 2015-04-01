@@ -34,7 +34,11 @@ class ParamsExtension extends \Twig_Extension
     	        'linkedin' => '#',
     	    ),
     	    'page' => array(
-    	        'sidemenu' => 'left',
+    	        'placement' => '_tree_content',
+    	    ),
+    	    'blog' => array(
+    	        'title' => 'Blog',
+    	        'placement' => '_tree_content',
     	    ),
     	);
         

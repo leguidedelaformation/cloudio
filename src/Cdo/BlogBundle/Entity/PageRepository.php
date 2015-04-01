@@ -21,11 +21,13 @@ class PageRepository extends EntityRepository
                   ->getResult();
     }
     
-    public function getBySlug(Account $account, $slug)
+    public function getBySlugDisplay(Account $account, $slug)
     {
         $qb = $this->createQueryBuilder('p')
                    ->where('p.account = :account')
                    ->setParameter('account', $account)
+                   ->andWhere('p.display = :display')
+                   ->setParameter('display', true)
                    ->andWhere('p.slug = :slug')
                    ->setParameter('slug', $slug)
                    ;
