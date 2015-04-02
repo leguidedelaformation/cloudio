@@ -1,2 +1,6 @@
 parameters:
     cdo_blog_page_level_max: 3
+    cdo_blog_comment_status:
+        0: En attente
+        1: Approuvé
+        2: Refusé

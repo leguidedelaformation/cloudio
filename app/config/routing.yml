@@ -1,3 +1,7 @@
+cdo_client:
+    resource: "@CdoClientBundle/Resources/config/routing.yml"
+    prefix:   /
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

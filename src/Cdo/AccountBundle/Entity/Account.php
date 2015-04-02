@@ -60,6 +60,11 @@ class Account
     private $posts;
     
     /**
+     * @ORM\OneToMany(targetEntity="Cdo\BlogBundle\Entity\Comment", mappedBy="account")
+     */
+    private $comments;
+    
+    /**
      * @ORM\OneToMany(targetEntity="Cdo\BlogBundle\Entity\Category", mappedBy="account")
      */
     private $categorys;
@@ -221,6 +226,39 @@ class Account
     }
 
     /**
+     * Add comment
+     *
+     * @param \Cdo\BlogBundle\Entity\Comment $comment
+     * @return Account
+     */
+    public function addComment(\Cdo\BlogBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \Cdo\BlogBundle\Entity\Comment $comment
+     */
+    public function removeComment(\Cdo\BlogBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
      * Add category
      *
      * @param \Cdo\BlogBundle\Entity\Category $category
@@ -262,6 +300,7 @@ class Account
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->pages = new \Doctrine\Common\Collections\ArrayCollection();
         $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
         $this->categorys = new \Doctrine\Common\Collections\ArrayCollection();
     }
 }

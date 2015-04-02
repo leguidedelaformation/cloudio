@@ -15,17 +15,20 @@
         <div class="row" id="test1">
             <div class="col-xs-2" id="test2">
                 <div id="sidemenu">
-                    <div class="menu-item-0"><a href="{{ path('cdo_blog_admin_page_index', {'subdomain': app.session.get('subdomain')}) }}">Pages</a></div>
-                    <div class="menu-item-0"><a href="{{ path('cdo_blog_admin_blog_index', {'subdomain': app.session.get('subdomain')}) }}">Blog</a></div>
+                    <div class="menu-item-0">SITE INTERNET</div>
+                    <div class="menu-item-1"><a href="{{ path('cdo_blog_admin_page_index', {'subdomain': app.session.get('subdomain')}) }}">Pages</a></div>
+                    <div class="menu-item-1"><a href="{{ path('cdo_blog_admin_blog_index', {'subdomain': app.session.get('subdomain')}) }}">Blog</a></div>
                     {% block sidemenu_blog %}
                     {% endblock sidemenu_blog %}
-                    <div class="menu-item-0"><a href="{{ path('cdo_site_admin_params_index', {'subdomain': app.session.get('subdomain')}) }}">Paramètres</a></div>
+                    <div class="menu-item-1"><a href="{{ path('cdo_site_admin_params_index', {'subdomain': app.session.get('subdomain')}) }}">Paramètres</a></div>
                     {% block sidemenu_params %}
                     {% endblock sidemenu_params %}
-                    <div class="menu-item-0"><a href="{{ path('cdo_site_admin_styles_index', {'subdomain': app.session.get('subdomain')}) }}">Apparence</a></div>
+                    <div class="menu-item-1"><a href="{{ path('cdo_site_admin_styles_index', {'subdomain': app.session.get('subdomain')}) }}">Apparence</a></div>
                     {% block sidemenu_style %}
                     {% endblock sidemenu_style %}
-                    <div class="menu-item-0"><a href="{{ path('cdo_media_admin_image_index', {'subdomain': app.session.get('subdomain')}) }}">Images</a></div>
+                    <div class="menu-item-1"><a href="{{ path('cdo_media_admin_image_index', {'subdomain': app.session.get('subdomain')}) }}">Images</a></div>
+                    <div class="menu-item-0">CRM</div>
+{#                    <div class="menu-item-1"><a href="{{ path('cdo_client_admin_individual_index', {'subdomain': app.session.get('subdomain')}) }}">Individus</a></div>#}
                 </div><!-- /#sidemenu -->
             </div><!-- /.col-xs-2 -->
             <div class="col-xs-10">

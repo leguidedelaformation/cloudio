@@ -21,6 +21,7 @@ class MenuExtension extends \Twig_Extension
         $em = $this->doctrine->getManager();
         $account = $em->getRepository('CdoAccountBundle:Account')->findSubdomain($subdomain);
         $cdo_blog_page_level_max = $this->container->getParameter('cdo_blog_page_level_max');
+    	$cdo_blog_menurank = $this->container->get('cdo_site.twig.globals_site_extension')->getGlobals()['cdo_blog']['menurank'];
         
         $page_level = array();
         for ($i = 0; $i < $cdo_blog_page_level_max; $i++) {
@@ -31,7 +32,7 @@ class MenuExtension extends \Twig_Extension
         $link_array = array();
         $i = 0;
         foreach ($page_level[0] as $page_0) {
-        	if ($i == 1) {
+        	if ($i == (int)$cdo_blog_menurank) {
                 $link_array[] = array(
                     'title' => 'Blog',
                     'type' => 'blog',
@@ -67,6 +68,13 @@ class MenuExtension extends \Twig_Extension
             );
             $i++;
         }
+        // In case blog is positioned after all menu links
+    	if ($i == (int)$cdo_blog_menurank) {
+            $link_array[] = array(
+                'title' => 'Blog',
+                'type' => 'blog',
+            );
+    	}
         
         return $link_array;
     }

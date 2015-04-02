@@ -12,10 +12,10 @@ class PageType extends AbstractType
     {
         $builder
             ->add('title', 'text', array(
-                'label' => 'Titre :',
+                'label' => 'Titre',
             ))
             ->add('content', 'textarea', array(
-                'label' => 'Contenu :',
+                'label' => 'Contenu',
                 'attr' => array(
                     'class' => 'tinymce',
                     'data-theme' => 'contentmanagement',
@@ -24,7 +24,7 @@ class PageType extends AbstractType
                 'required' => false,
             ))
             ->add('display', 'choice', array(
-                'label' => 'Publier :',
+                'label' => 'Publier',
                 'choices' => array(
                     '1' => 'Oui',
                     '0' => 'Non',

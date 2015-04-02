@@ -1,0 +1,4 @@
+parameters:
+    cdo_client_individual_origin:
+        0: Indéterminé
+        1: Commentaire

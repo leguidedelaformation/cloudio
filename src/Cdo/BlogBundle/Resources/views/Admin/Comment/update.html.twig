@@ -1,0 +1,13 @@
+{% extends "CdoBlogBundle:Admin/Blog:layout.html.twig" %}
+
+{% block title %}
+    Editer un commentaire de l'article &laquo {{ comment.post.title }} &raquo
+{% endblock title %}
+
+{% block heading %}
+    <h1>Editer un commentaire de l'article &laquo {{ comment.post.title }} &raquo</h1>
+{% endblock heading %}
+
+{% block innercontent %}
+    {% include "CdoBlogBundle:Admin/Comment:form_update.html.twig" %}
+{% endblock innercontent %}

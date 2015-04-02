@@ -31,8 +31,8 @@ services:
             doctrine: "@doctrine"
         tags:
             - { name: twig.extension }
-    cdo_site.twig.globals_extension:
-        class: Cdo\SiteBundle\Extension\GlobalsExtension
+    cdo_site.twig.globals_site_extension:
+        class: Cdo\SiteBundle\Extension\GlobalsSiteExtension
         arguments: 
             container: "@service_container"
             request: "@request_stack"

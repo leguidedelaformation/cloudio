@@ -1,0 +1,8 @@
+{% for post in post_collection %}
+    <h2><a href="{{ path('cdo_blog_visitor_post_show', {'slug': post.slug, 'subdomain': app.session.get('subdomain')}) }}">{{ post.title }}</a></h2>
+    <p>{{ post.content|raw }}</p>
+    <p>{{ post.releasedate|date('d/m/Y') }}</p>
+    {% if post.numberComments > 0 %}
+        <p>{{ post.numberComments }} commentaire{% if post.numberComments > 1 %}s{% endif %}</p>
+    {% endif %}
+{% endfor %}

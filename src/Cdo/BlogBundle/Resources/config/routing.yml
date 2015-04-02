@@ -10,6 +10,10 @@ cdo_blog_admin_post:
     resource: "@CdoBlogBundle/Controller/Admin/PostController.php"
     type:     annotation
 
+cdo_blog_admin_comment:
+    resource: "@CdoBlogBundle/Controller/Admin/CommentController.php"
+    type:     annotation
+
 cdo_blog_admin_category:
     resource: "@CdoBlogBundle/Controller/Admin/CategoryController.php"
     type:     annotation

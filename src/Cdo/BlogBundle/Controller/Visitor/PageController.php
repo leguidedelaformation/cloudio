@@ -39,7 +39,7 @@ class PageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $account = $em->getRepository('CdoAccountBundle:Account')->findSubdomain($subdomain);
-    	$placement = $this->container->get('cdo_site.twig.globals_extension')->getGlobals()['cdo_page']['placement'];
+    	$placement = $this->container->get('cdo_site.twig.globals_site_extension')->getGlobals()['cdo_page']['placement'];
         
         $page = $em->getRepository('CdoBlogBundle:Page')
                    ->getBySlugDisplay($account, $slug);

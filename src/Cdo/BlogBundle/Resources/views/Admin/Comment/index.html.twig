@@ -1,0 +1,62 @@
+{% extends "CdoBlogBundle:Admin/Blog:layout.html.twig" %}
+
+{% block title %}
+    Commentaires {{ parent() }}
+{% endblock title %}
+
+{% block heading %}
+    <h1>Commentaires</h1>
+{% endblock heading %}
+
+{% block innercontent %}
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Auteur</th>
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Article</th>
+                    <th class="text-center">Contenu</th>
+                    <th class="text-center">Statut</th>
+                    <th class="text-center">Editer</th>
+                    <th class="text-center">Supprimer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comment in comment_collection %}
+                    <tr>
+                        <td>
+                            {% if comment.user %}
+                                {{ comment.user.username }} <span class="sr-only">{{ comment.user.username }}</span>
+                            {% elseif comment.individual %}
+                                {{ comment.individual.username }} <span class="sr-only">{{ comment.individual.username }}</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            {{ comment.createdAt|date('d/m/Y H:i:s') }}
+                        </td>
+                        <td>
+                            <a href="{{ path('cdo_blog_visitor_post_show', {'slug': comment.post.slug, 'subdomain': app.session.get('subdomain')}) }}" rel="tooltip" data-original-title="Voir" target="_blank">{{ comment.post.title }}</a>
+                        </td>
+                        <td>
+                            {{ comment.content|nl2br }}
+                        </td>
+                        <td class="text-center">
+                            {{ cdo_blog_comment_status[comment.status] }}
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ path('cdo_blog_admin_comment_update', {'comment': comment.id, 'subdomain': app.session.get('subdomain')}) }}" aria-label="Editer" rel="tooltip" data-original-title="Editer">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ path('cdo_blog_admin_comment_remove', {'comment': comment.id, 'subdomain': app.session.get('subdomain')}) }}" aria-label="Supprimer" rel="tooltip" data-original-title="Supprimer">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock innercontent %}

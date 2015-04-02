@@ -1,0 +1,18 @@
+<div class="form-group control-label">
+    <div class="col-sm-3">
+        {{ form_label(form.content) }}
+    </div><!-- /.col-sm-3 -->
+    <div class="col-sm-9">
+        {{ form_widget(form.content) }}
+        {{ form_errors(form.content) }}
+    </div><!-- /.col-sm-9 -->
+</div><!-- /.form-group -->
+<div class="form-group control-label">
+    <div class="col-sm-3">
+        {{ form_label(form.status) }}
+    </div><!-- /.col-sm-3 -->
+    <div class="col-sm-9 text-left">
+        {{ form_widget(form.status) }}
+        {{ form_errors(form.status) }}
+    </div><!-- /.col-sm-9 -->
+</div><!-- /.form-group -->

@@ -12,5 +12,6 @@
     <div class="text-center">
         <p><a href="{{ path('cdo_blog_admin_post_index', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg">Articles</a></p>
         <p><a href="{{ path('cdo_blog_admin_category_index', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg">Catégories</a></p>
+        <p><a href="{{ path('cdo_blog_admin_comment_index', {'subdomain': app.session.get('subdomain')}) }}" class="btn btn-default btn-lg">Commentaires</a></p>
     </div><!-- /.text-center -->
 {% endblock innercontent %}

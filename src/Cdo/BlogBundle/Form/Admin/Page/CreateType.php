@@ -32,7 +32,7 @@ class CreateType extends PageType
                     return $pr->getSuplevelForm($account_id, $page_level_max - 1);
                 },
                 'property' => 'title',
-                'label' => 'Page parente :',
+                'label' => 'Page parente',
                 'required' => false,
             ))
         ;

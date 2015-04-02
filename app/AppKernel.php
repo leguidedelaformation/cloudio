@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Cdo\SiteBundle\CdoSiteBundle(),
             new Cdo\BlogBundle\CdoBlogBundle(),
             new Cdo\MediaBundle\CdoMediaBundle(),
+            new Cdo\ClientBundle\CdoClientBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

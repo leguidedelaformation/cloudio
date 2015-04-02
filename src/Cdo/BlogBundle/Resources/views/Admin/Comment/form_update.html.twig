@@ -1,0 +1,7 @@
+{% extends "CdoSiteBundle:Admin/Form:update.html.twig" %}
+
+{% form_theme form 'CdoSiteBundle:Form:radio_checkbox_margin.html.twig' %}
+
+{% block formfields %}
+    {% include "CdoBlogBundle:Admin/Comment:form_fields.html.twig" %}
+{% endblock formfields %}

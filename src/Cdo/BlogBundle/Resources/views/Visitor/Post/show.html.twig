@@ -26,5 +26,49 @@
             {% endif %}
         </p>
         <p>{{ post.content|raw }}</p>
+        {% for comment in comment_collection %}
+            <div class="comment-view">
+                Posté le {{ comment.createdAt|localizeddate(locale=app.request.locale, format='d LLLL Y') }}
+                {% if comment.user %}
+                    par {{ comment.user.username }}
+                {% elseif comment.individual %}
+                    par {{ comment.individual.username }}
+                {% endif %}
+                <br />
+                {{ comment.content|nl2br }}
+            </div><!-- /.comment-view -->
+        {% endfor %}
+        <a href="#" id="comment-link" onclick="javascript:display_form();">Réagir</a>
+        <div id="comment-form">
+            <form method="post" {{ form_enctype(form) }} class="form-horizontal" role="form">
+                {{ form_start(form) }}
+                    <div class="form-group control-label">
+                        <div class="col-sm-3">
+                            {{ form_label(form.content) }}
+                        </div><!-- /.col-sm-3 -->
+                        <div class="col-sm-9">
+                            {{ form_widget(form.content) }}
+                            {{ form_errors(form.content) }}
+                        </div><!-- /.col-sm-9 -->
+                    </div><!-- /.form-group -->
+                    <br />
+                    <div class="form-group">
+                        <div class="text-center">
+                            <input type="submit" class="btn btn-primary btn-lg" value="Valider" />
+                        </div><!-- /.text-center -->
+                    </div><!-- /.form-group -->
+                {{ form_end(form) }}
+            </form>
+        </div><!-- /#comment-form -->
     </div><!--  /.col-xs-9 -->
 {% endblock post_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+	<script type="text/javascript">
+		function display_form() {
+            document.getElementById('comment-form').style.visibility="visible";
+            document.getElementById('comment-link').style.visibility="hidden";
+		}
+	</script>
+{% endblock javascripts %}

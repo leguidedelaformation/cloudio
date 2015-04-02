@@ -6,3 +6,10 @@ services:
             doctrine: "@doctrine"
         tags:
             - { name: twig.extension }
+    cdo_blog.twig.globals_blog_extension:
+        class: Cdo\BlogBundle\Extension\GlobalsBlogExtension
+        arguments: 
+            container: "@service_container"
+            request: "@request_stack"
+        tags:
+            - { name: twig.extension }

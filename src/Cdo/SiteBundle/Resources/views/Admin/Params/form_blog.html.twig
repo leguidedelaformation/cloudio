@@ -14,6 +14,15 @@
     </div><!-- /.form-group -->
     <div class="form-group control-label">
         <div class="col-sm-3">
+            {{ form_label(form.blog_menurank) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9 text-left">
+            {{ form_widget(form.blog_menurank, { 'attr': {'class': 'form-control'} }) }}
+            {{ form_errors(form.blog_menurank) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
+    <div class="form-group control-label">
+        <div class="col-sm-3">
             {{ form_label(form.blog_placement) }}
         </div><!-- /.col-sm-3 -->
         <div class="col-sm-9 text-left">

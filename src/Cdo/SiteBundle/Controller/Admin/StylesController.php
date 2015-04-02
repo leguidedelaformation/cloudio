@@ -130,8 +130,10 @@ class StylesController extends Controller
         }
 
         $styles_path = $this->container->get('kernel')->getRootDir().'/../custom/'.$subdomain.'/styles.json';
+        $params_path = $this->container->get('kernel')->getRootDir().'/../custom/'.$subdomain.'/params.json';
         
         $styles_array = json_decode(file_get_contents($styles_path), true);
+        $params_array = json_decode(file_get_contents($params_path), true);
         
         $fields_array = array(
             'navbar_background' => $styles_array['navbar']['background'],
@@ -147,6 +149,7 @@ class StylesController extends Controller
             'navbar_slogan_fontstyle' => $styles_array['navbar']['slogan']['fontstyle'],
             'navbar_slogan_color' => $styles_array['navbar']['slogan']['color'],
             'navbar_slogan_textshadow' => $styles_array['navbar']['slogan']['textshadow'],
+            'social_color' => $params_array['social']['color'],
         );
         $fontweight_array = array(
             'bold' => 'oui',
@@ -160,6 +163,13 @@ class StylesController extends Controller
         $boxshadow_array = array(
             '0 2px 2px rgba(0, 0, 0, 0.25)' => 'pâle',
             '0 2px 2px rgba(0, 0, 0, 0.5)' => 'foncé',
+        );
+        $color_array = array(
+            'color' => 'couleurs originales',
+            'inverted' => 'blanc',
+            'lightgrey' => 'gris clair',
+            'grey' => 'gris foncé',
+            'black' => 'noir',
         );
         
         $form = $this->createFormBuilder($fields_array)
@@ -260,6 +270,11 @@ class StylesController extends Controller
                          'required' => false,
                          'empty_value' => 'pas d\'ombre',
                      ))
+                     ->add('social_color', 'choice', array(
+                         'choices' => $color_array,
+                         'label' => 'Couleur des icônes',
+                         'required' => false,
+                     ))
                      ->getForm();
         
         if ($request->isMethod('POST')) {
@@ -280,6 +295,11 @@ class StylesController extends Controller
             $styles_array['navbar']['slogan']['fontstyle'] = $data['navbar_slogan_fontstyle'];
             $styles_array['navbar']['slogan']['color'] = $data['navbar_slogan_color'];
             $styles_array['navbar']['slogan']['textshadow'] = $data['navbar_slogan_textshadow'];
+            $params_array['social']['color'] = $data['social_color'];
+            $params_encoded = json_encode($params_array, JSON_PRETTY_PRINT);
+            $params_file = fopen($params_path, 'w') or die("Unable to open file!");
+            fwrite($params_file, $params_encoded);
+            fclose($params_file);
             
             return self::process($styles_array, $styles_path, $subdomain);
         }        

@@ -38,6 +38,7 @@ class ParamsExtension extends \Twig_Extension
     	    ),
     	    'blog' => array(
     	        'title' => 'Blog',
+    	        'menurank' => 1,
     	        'placement' => '_tree_content',
     	    ),
     	);

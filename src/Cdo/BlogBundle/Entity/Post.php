@@ -67,6 +67,18 @@ class Post
      * @ORM\OrderBy({"title" = "ASC"})
      */
     private $categorys;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Cdo\BlogBundle\Entity\Comment", mappedBy="post")
+     */
+    private $comments;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="numberComments", type="integer")
+     */
+    private $numberComments;
 
 
     /**
@@ -226,6 +238,62 @@ class Post
     {
         return $this->categorys;
     }
+
+    /**
+     * Add comment
+     *
+     * @param \Cdo\BlogBundle\Entity\Comment $comment
+     * @return Post
+     */
+    public function addComment(\Cdo\BlogBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \Cdo\BlogBundle\Entity\Comment $comment
+     */
+    public function removeComment(\Cdo\BlogBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Set numberComments
+     *
+     * @param integer $numberComments
+     * @return Post
+     */
+    public function setNumberComments($numberComments)
+    {
+        $this->numberComments = $numberComments;
+
+        return $this;
+    }
+
+    /**
+     * Get numberComments
+     *
+     * @return integer 
+     */
+    public function getNumberComments()
+    {
+        return $this->numberComments;
+    }
     
     
     /**
@@ -237,5 +305,7 @@ class Post
         $this->setReleasedate(new \Datetime('now'));
         $this->setAuthor(true);
         $this->categorys = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->setNumberComments(0);
     }
 }

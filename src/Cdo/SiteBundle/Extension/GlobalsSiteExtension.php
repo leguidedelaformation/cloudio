@@ -5,7 +5,7 @@ namespace Cdo\SiteBundle\Extension;
 use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class GlobalsExtension extends \Twig_Extension
+class GlobalsSiteExtension extends \Twig_Extension
 {
     protected $container;
     protected $request;
@@ -39,6 +39,6 @@ class GlobalsExtension extends \Twig_Extension
     
     public function getName()
     {
-        return 'globals_extension';
+        return 'globals_site_extension';
     }
 }

@@ -77,3 +77,18 @@ body {
     padding:0.3em 0.6em;
     border-radius:0.5em;
 }
+/*~~~ Comment ~~~*/
+.comment-view {
+	border-top:1px solid #C2C2C2;
+	padding:6px 0 12px 24px;
+	font-size: 0.9em;
+}
+#comment-link {
+	padding-left:24px;
+}
+#comment-form {
+	visibility:hidden;
+}
+#comment-form textarea {
+	resize:none;
+}

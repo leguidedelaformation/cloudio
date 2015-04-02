@@ -13,6 +13,20 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ParamsController extends Controller
 {
+    public function process($params_array, $params_path, $subdomain)
+    {
+        $params_encoded = json_encode($params_array, JSON_PRETTY_PRINT);
+        $params_file = fopen($params_path, 'w') or die("Unable to open file!");
+        fwrite($params_file, $params_encoded);
+        fclose($params_file);
+            
+        $this->get('session')->getFlashBag()->add('success', 'Les paramètres ont été mis à jour.');
+        
+        return $this->redirect($this->generateUrl('cdo_site_admin_params_index', array(
+            'subdomain' => $subdomain,
+        )));
+    }
+    
     /**
      * @Route("/", name="cdo_site_admin_params_index")
      * @Template()
@@ -57,16 +71,8 @@ class ParamsController extends Controller
             
             $params_array['site']['title'] = $data['site_title'];
             $params_array['site']['slogan'] = $data['site_slogan'];
-            $params_encoded = json_encode($params_array, JSON_PRETTY_PRINT);
-            $params_file = fopen($params_path, 'w') or die("Unable to open file!");
-            fwrite($params_file, $params_encoded);
-            fclose($params_file);
-                
-            $this->get('session')->getFlashBag()->add('success', 'Les paramètres ont été mis à jour.');
             
-            return $this->redirect($this->generateUrl('cdo_site_admin_params_index', array(
-                'subdomain' => $subdomain,
-            )));
+            return self::process($params_array, $params_path, $subdomain);
         }        
 
         return array(
@@ -86,26 +92,13 @@ class ParamsController extends Controller
         $params_array = json_decode(file_get_contents($params_path), true);
         
         $fields_array = array(
-            'social_color' => $params_array['social']['color'],
             'social_facebook' => $params_array['social']['facebook'],
             'social_twitter' => $params_array['social']['twitter'],
             'social_google' => $params_array['social']['google'],
             'social_linkedin' => $params_array['social']['linkedin'],
         );
-        $color_array = array(
-            'color' => 'couleurs originales',
-            'inverted' => 'blanc',
-            'lightgrey' => 'gris clair',
-            'grey' => 'gris foncé',
-            'black' => 'noir',
-        );
         
         $form = $this->createFormBuilder($fields_array)
-                     ->add('social_color', 'choice', array(
-                         'choices' => $color_array,
-                         'label' => 'Couleur des icônes',
-                         'required' => false,
-                     ))
                      ->add('social_facebook', 'text', array(
                          'label' => 'Adresse Facebook',
                          'required' => false,
@@ -129,21 +122,12 @@ class ParamsController extends Controller
 
             $data = $form->getData();
             
-            $params_array['social']['color'] = $data['social_color'];
             $params_array['social']['facebook'] = $data['social_facebook'];
             $params_array['social']['twitter'] = $data['social_twitter'];
             $params_array['social']['google'] = $data['social_google'];
             $params_array['social']['linkedin'] = $data['social_linkedin'];
-            $params_encoded = json_encode($params_array, JSON_PRETTY_PRINT);
-            $params_file = fopen($params_path, 'w') or die("Unable to open file!");
-            fwrite($params_file, $params_encoded);
-            fclose($params_file);
-                
-            $this->get('session')->getFlashBag()->add('success', 'Les paramètres ont été mis à jour.');
             
-            return $this->redirect($this->generateUrl('cdo_site_admin_params_index', array(
-                'subdomain' => $subdomain,
-            )));
+            return self::process($params_array, $params_path, $subdomain);
         }        
 
         return array(
@@ -184,16 +168,8 @@ class ParamsController extends Controller
             $data = $form->getData();
             
             $params_array['page']['placement'] = $data['page_placement'];
-            $params_encoded = json_encode($params_array, JSON_PRETTY_PRINT);
-            $params_file = fopen($params_path, 'w') or die("Unable to open file!");
-            fwrite($params_file, $params_encoded);
-            fclose($params_file);
-                
-            $this->get('session')->getFlashBag()->add('success', 'Les paramètres ont été mis à jour.');
             
-            return $this->redirect($this->generateUrl('cdo_site_admin_params_index', array(
-                'subdomain' => $subdomain,
-            )));
+            return self::process($params_array, $params_path, $subdomain);
         }        
 
         return array(
@@ -208,6 +184,8 @@ class ParamsController extends Controller
      */
     public function blogAction(Request $request, $subdomain)
     {
+        $em = $this->getDoctrine()->getManager();
+        $account = $em->getRepository('CdoAccountBundle:Account')->findSubdomain($subdomain);
         $params_path = $this->container->get('kernel')->getRootDir().'/../custom/'.$subdomain.'/params.json';
         
         $params_array = json_decode(file_get_contents($params_path), true);
@@ -215,7 +193,15 @@ class ParamsController extends Controller
         $fields_array = array(
             'blog_title' => $params_array['blog']['title'],
             'blog_placement' => $params_array['blog']['placement'],
+            'blog_menurank' => $params_array['blog']['menurank'],
         );
+        $page_collection = $em->getRepository('CdoBlogBundle:Page')
+                              ->getByLevelOrderedRank($account, 0, true);
+        $menurank_array = array();
+        $menurank_array[] = 'En première position';
+        foreach ($page_collection as $page) {
+        	$menurank_array[] = 'Après « '.$page->getTitle().' »';
+        }
         $placement_array = array(
             '_content' => '1 bloc: Contenu',
             '_tree_content' => '2 blocs: Menu à gauche - Contenu à droite',
@@ -226,6 +212,10 @@ class ParamsController extends Controller
                      ->add('blog_title', 'text', array(
                          'label' => 'Titre du blog',
                          'required' => false,
+                     ))
+                     ->add('blog_menurank', 'choice', array(
+                         'choices' => $menurank_array,
+                         'label' => 'Position dans le menu principal',
                      ))
                      ->add('blog_placement', 'choice', array(
                          'choices' => $placement_array,
@@ -239,11 +229,16 @@ class ParamsController extends Controller
             $data = $form->getData();
             
             $params_array['blog']['title'] = $data['blog_title'];
+            $params_array['blog']['menurank'] = $data['blog_menurank'];
             $params_array['blog']['placement'] = $data['blog_placement'];
             $params_encoded = json_encode($params_array, JSON_PRETTY_PRINT);
             $params_file = fopen($params_path, 'w') or die("Unable to open file!");
             fwrite($params_file, $params_encoded);
             fclose($params_file);
+            
+            if ($data['blog_menurank'] != $fields_array['blog_menurank']) {
+                $this->container->get('cdo_site.twig.menu_extension')->encode($subdomain);
+            }
                 
             $this->get('session')->getFlashBag()->add('success', 'Les paramètres ont été mis à jour.');
             

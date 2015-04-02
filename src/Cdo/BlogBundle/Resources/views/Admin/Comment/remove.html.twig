@@ -1,0 +1,24 @@
+{% extends "CdoBlogBundle:Admin/Blog:layout.html.twig" %}
+
+{% block title %}
+    Supprimer un commentaire de l'article &laquo {{ comment.post.title }} &raquo
+{% endblock title %}
+
+{% block heading %}
+    <h1>Supprimer un commentaire de l'article &laquo {{ comment.post.title }} &raquo</h1>
+{% endblock heading %}
+
+{% block innercontent %}
+    <br />
+    <div class="text-center">
+        <p>Etes-vous certain(e) de vouloir supprimer le commentaire suivant ?</p>
+        <p><i>{{ comment.content|nl2br }}</i></p>
+        <p>Vous ne pourrez pas revenir sur cette action.</p>
+        <br />
+        <form action="{{ path('cdo_blog_admin_comment_remove', {'comment': comment.id, 'subdomain': app.session.get('subdomain')}) }}" method="post">
+            <a href="{{ app.request.headers.get('referer') }}" class="btn btn-default btn-lg">Annuler</a>
+            <input type="submit" value="Supprimer" class="btn btn-danger btn-lg" />
+            {{ form_rest(form) }}
+        </form>
+    </div><!-- /.text-center -->
+{% endblock innercontent %}

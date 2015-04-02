@@ -46,8 +46,12 @@
 }
 #sidemenu .menu-item-0 {
     background: #000;
+	color: #fff;
 }
 #sidemenu .menu-item-1 {
+    background: #000;
+}
+#sidemenu .menu-item-2 {
     background: #4D4D4D;
     text-indent: 2em;
     margin-left: -1em;

@@ -139,4 +139,14 @@
             {{ form_errors(form.navbar_slogan_textshadow) }}
         </div><!-- /.col-sm-9 -->
     </div><!-- /.form-group -->
+    <h3>Réseaux sociaux</h3>
+    <div class="form-group control-label">
+        <div class="col-sm-3">
+            {{ form_label(form.social_color) }}
+        </div><!-- /.col-sm-3 -->
+        <div class="col-sm-9">
+            {{ form_widget(form.social_color, { 'attr': {'class': 'form-control'} }) }}
+            {{ form_errors(form.social_color) }}
+        </div><!-- /.col-sm-9 -->
+    </div><!-- /.form-group -->
 {% endblock formfields %}

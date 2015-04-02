@@ -70,6 +70,11 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Cdo\BlogBundle\Entity\Post", mappedBy="user")
      */
     private $posts;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Cdo\BlogBundle\Entity\Comment", mappedBy="user")
+     */
+    private $comments;
 
 
     /**
@@ -206,6 +211,39 @@ class User extends BaseUser
     {
         return $this->posts;
     }
+
+    /**
+     * Add comment
+     *
+     * @param \Cdo\BlogBundle\Entity\Comment $comment
+     * @return User
+     */
+    public function addComment(\Cdo\BlogBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \Cdo\BlogBundle\Entity\Comment $comment
+     */
+    public function removeComment(\Cdo\BlogBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
     
     
     /**
@@ -216,5 +254,6 @@ class User extends BaseUser
         parent::__construct();
         $this->roles = array('ROLE_USER');
         $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
     }
 }
